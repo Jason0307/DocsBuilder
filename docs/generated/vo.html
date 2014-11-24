@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>Bball - Value Object</title>
+<style type="text/css">
+body {
+    font-family: Calibri, arial, sans-serif;
+    font-size: 14px;
+}
+table.vo {
+    border-collapse: collapse;
+    border-top: 1px solid #BBBBBB;
+    border-right: 1px solid #BBBBBB;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+table.vo th,td {
+    border-left: 1px solid #BBBBBB;
+    border-bottom: 1px solid #BBBBBB;
+    padding: 3px;
+}
+table.vo td.vo-name {
+    font-weight: bold;
+    background: none repeat scroll 0 0 #EEEEEE;
+    color: #0000CC;
+}
+table.vo td.ctp {
+    text-align: right;
+}
+table.vo a:visited {
+    color: blue;
+}
+.sel-mav {
+    margin-bottom: 10px;
+}
+</style>
+</head>
+<body>
+    <div class="sel-mav">
+        <select onchange="javascript:location.href='#'+this.options[this.selectedIndex].value;">
+                        <option value="UserVo">UserVo</option>
+            <option value="WalletVo">WalletVo</option>
+        </select>
+    </div>
+    
+    <table class="vo" border="0" id="UserVo">
+        <tr>
+            <td class="vo-name" colspan="2">(1) UserVo</td>
+        </tr>
+        <tr align="center">
+            <th>Type</th>
+            <th>Name</th>
+        </tr>
+        <tr>
+            <td class="ctp">long</td>
+            <td>userId</td>
+        </tr>
+        <tr>
+            <td class="ctp">String</td>
+            <td>username</td>
+        </tr>
+        <tr>
+            <td class="ctp">String</td>
+            <td>email</td>
+        </tr>
+        <tr>
+            <td class="ctp">WalletVo</td>
+            <td>walletVo</td>
+        </tr>
+    </table>
+    
+    <table class="vo" border="0" id="WalletVo">
+        <tr>
+            <td class="vo-name" colspan="2">(2) WalletVo</td>
+        </tr>
+        <tr align="center">
+            <th>Type</th>
+            <th>Name</th>
+        </tr>
+        <tr>
+            <td class="ctp">int</td>
+            <td>walletType</td>
+        </tr>
+        <tr>
+            <td class="ctp">int</td>
+            <td>value</td>
+        </tr>
+    </table>
+    
+</body>
+</html>
