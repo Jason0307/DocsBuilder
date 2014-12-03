@@ -1,8 +1,12 @@
 package org.zhubao.docx;
 
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
 import java.io.StringWriter;
+import java.io.Writer;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
@@ -23,6 +27,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FilenameUtils;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.markdown4j.Markdown4jProcessor;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.core.ParameterNameDiscoverer;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,8 +39,8 @@ import sun.reflect.generics.reflectiveObjects.GenericArrayTypeImpl;
 public class ApiDocBuilder extends AbstractBaseBuilder {
 	ObjectMapper objectMapper = new ObjectMapper();
 	ParameterNameDiscoverer nameDiscoverer = new LocalVariableTableParameterNameDiscoverer();
-
-	String templateFile = "/org/zhubao/docx/template/api_demo.ftl";
+	static int GENERATE_TYPE = Constants.GENERATE_MARKDOWN;
+	String templateFile = "/org/zhubao/docx/template/api_markdown.ftl";
 	String packageToFindController = "org.zhubao.controller";
 
 	public static void main(String[] args) throws Exception {
@@ -42,8 +49,12 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 	}
 
 	public void build() throws Exception {
+		if(Constants.GENERATE_HTML == GENERATE_TYPE){
+			templateFile = "/org/zhubao/docx/template/api_demo.ftl";
+		}
 		initTemplate(templateFile);
 		String[] packages = packageToFindController.split(",");
+		outputDir1 = outputDir1 + ((Constants.GENERATE_MARKDOWN == GENERATE_TYPE) ? "/markdown" : "/html/report");
 		int i = 1;
 		for (String packageName : packages) {
 			Map<String, Vector<ApiObject>> apiObjectGroup = new HashMap<String, Vector<ApiObject>>();
@@ -51,7 +62,14 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 			for (Class<?> clazz : classes) {
 				parseControllerClass(clazz, apiObjectGroup);
 			}
-			outputDoc("/api" + i + ".html", apiObjectGroup);
+			if(Constants.GENERATE_MARKDOWN == GENERATE_TYPE){
+				String fileName = "/api" + i + ".md";
+				outputDoc(fileName, apiObjectGroup);
+				renderHtml(fileName);
+			}else{
+				String fileName = "/api" + i + ".html";
+				outputDoc(fileName, apiObjectGroup);
+			}
 			i++;
 		}
 
@@ -192,6 +210,25 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 		String result = writer.toString();
 		writeStringToFile(result, outputDir1, fileName);
 		writeStringToFile(result, outputDir2, fileName);
+	}
+	
+	/**
+	 * @param outputDir1
+	 * @param fileName
+	 */
+	private void renderHtml(String fileName)
+			throws Exception {
+		Markdown4jProcessor processor = new Markdown4jProcessor();
+		Reader in = new FileReader(outputDir1 + "/" + fileName);
+		String htmlName = fileName.substring(0, fileName.lastIndexOf("."));
+		Writer out = new FileWriter(outputDir1 + "/report/" + htmlName + ".html");
+		String s = processor.process(in);
+		Document doc = Jsoup.parse(new File(outputDir1
+				+ "/template/template.html"), "UTF-8");
+		doc.getElementById("content").append(s);
+		out.write(doc.html());
+		out.close();
+
 	}
 
 	/**

@@ -24,5 +24,13 @@ public class BuilderUtil {
 		}
 		return true;
 	}
+	
+	public boolean hasReference(String value){
+		if(null != value && !"".equals(value)){
+			return true;
+		}else{
+			return false;
+		}
+	}
 
 }

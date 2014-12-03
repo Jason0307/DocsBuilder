@@ -1,0 +1,25 @@
+<html>
+<head>
+<title>Bball - Server API</title>
+<link href="../css/format.css" type="text/css" rel="stylesheet"></link>
+<link href="../css/github-markdown.css" type="text/css" rel="stylesheet"></link>
+</head>
+<body>
+<div id="content"></div>
+<script src="../js/jquery.1.7.1.min.js" type="text/javascript"></script>
+<script src="../js/urchin.js" type="text/javascript"></script>
+<script src="../js/format.js" type="text/javascript"></script>
+<script src="../js/tool.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("pre > code").each(function(){
+			Process($(this),$(this).text());
+		})
+		
+		$(".mock").each(function(){
+			Process($(this),$(this).text());
+		})
+	})
+</script>
+</body>
+</html>

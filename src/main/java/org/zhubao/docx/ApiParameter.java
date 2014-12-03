@@ -6,6 +6,7 @@ public class ApiParameter {
 	String type;
 	String name;
 	String mockData;
+	String reference;
 
 	public ApiParameter(Class<?> typeClass, String name) {
 		super();
@@ -46,10 +47,19 @@ public class ApiParameter {
 		this.mockData = mockData;
 	}
 
+	public String getReference() {
+		return reference;
+	}
+
+	public void setReference(String reference) {
+		this.reference = reference;
+	}
+
 	@Override
 	public String toString() {
 		return "ApiParameter [typeClass=" + typeClass + ", type=" + type
-				+ ", name=" + name + ", mockData=" + mockData + "]";
+				+ ", name=" + name + ", mockData=" + mockData + ", reference="
+				+ reference + "]";
 	}
 
 }

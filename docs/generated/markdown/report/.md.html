@@ -1,0 +1,1677 @@
+<html>
+ <head> 
+  <title>Bball - Server API</title> 
+  <link href="css/format.css" type="text/css" rel="stylesheet"> 
+  <link href="css/github-markdown.css" type="text/css" rel="stylesheet"> 
+ </head> 
+ <body> 
+  <div id="content">
+   <h2>Login</h2> 
+   <h4>(1) login</h4> 
+   <p><strong>URL:</strong> <br><code>/login</code></p> 
+   <p><strong>RequsetMethod:</strong> <br><code>POST</code></p> 
+   <p><strong>Request Parameters:</strong></p> 
+   <table> 
+    <thead> 
+     <tr> 
+      <th>Name</th> 
+      <th>Type</th> 
+      <th>Mock</th> 
+      <th>Reference</th> 
+     </tr> 
+    </thead> 
+    <tbody> 
+     <tr> 
+      <td>emailAddress</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>password</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>childId</td> 
+      <td>long</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+    </tbody> 
+   </table> 
+   <p><strong>Response:</strong></p> 
+   <pre><code>{
+
+   "response":
+   {
+
+      "coin":0,
+
+      "userId":0,
+
+      "age":0,
+
+      "gender":0,
+
+      "emailAddress":"",
+
+      "allowSessionCount":0,
+
+      "exp":0,
+
+      "parentEmail":"",
+
+      "accessToken":"",
+
+      "missionVos":
+      [
+
+         {
+
+            "missionId":0,
+
+            "DT_RowId":0,
+
+            "questVos":
+            [
+
+               {
+
+                  "questId":0,
+
+                  "missionId":0,
+
+                  "objects":"",
+
+                  "decription":"",
+
+                  "rewardVos":
+                  [
+
+                     {
+
+                        "quantity":0,
+
+                        "rewardType":0,
+
+                        "value":0
+
+                     }
+
+
+
+                  ],
+
+                  "name":"",
+
+                  "type":0,
+
+                  "locked":false
+
+               }
+
+
+
+            ],
+
+            "name":""
+
+         }
+
+
+
+      ],
+
+      "cash":0,
+
+      "cashType":0,
+
+      "roleVo":
+      {
+
+         "roleId":0,
+
+         "priviledge":0,
+
+         "label":""
+
+      },
+
+      "gcsSessionId":"",
+
+      "lastLogin":1417577729039,
+
+      "inventoryVos":
+      {
+
+         "itemVos":
+         [
+
+            {
+
+               "itemId":0,
+
+               "itemName":"",
+
+               "quantity":0,
+
+               "description":""
+
+            }
+
+
+
+         ]
+
+
+
+      },
+
+      "syncStatusVo":
+      {
+
+         "latestGameSessionId":0,
+
+         "nextSessionId":0,
+
+         "segmentCount":0,
+
+         "latestSegment":0,
+
+         "latestUpdateTime":0,
+
+         "deviceId":"",
+
+         "completedSessionCount":0
+
+      },
+
+      "missionStatusVo":
+      {
+
+         "missionStatus":
+         {
+
+            "1":
+            [
+
+               0,
+
+               0,
+
+               0,
+
+               0,
+
+               0
+
+            ]
+
+
+
+         },
+
+         "missionStars":
+         {
+
+            "1":1.0
+
+         }
+
+
+
+      },
+
+      "name":"",
+
+      "level":0,
+
+      "status":0,
+
+      "children":
+      [
+
+         null
+
+      ]
+
+
+
+   },
+
+   "statusCode":0,
+
+   "additionalInfo":null
+
+}
+</code></pre> 
+   <h4>(2) editAccount</h4> 
+   <p><strong>URL:</strong> <br><code>/editAccount</code></p> 
+   <p><strong>RequsetMethod:</strong> <br><code>POST</code></p> 
+   <p><strong>Request Parameters:</strong></p> 
+   <table> 
+    <thead> 
+     <tr> 
+      <th>Name</th> 
+      <th>Type</th> 
+      <th>Mock</th> 
+      <th>Reference</th> 
+     </tr> 
+    </thead> 
+    <tbody> 
+     <tr> 
+      <td>AT</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>emailAddress</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>password</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>name</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>age</td> 
+      <td>int</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>gender</td> 
+      <td>int</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>parentEmail</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+    </tbody> 
+   </table> 
+   <p><strong>Response:</strong></p> 
+   <pre><code>{
+
+   "response":
+   {
+
+      "coin":0,
+
+      "userId":0,
+
+      "age":0,
+
+      "gender":0,
+
+      "emailAddress":"",
+
+      "allowSessionCount":0,
+
+      "exp":0,
+
+      "parentEmail":"",
+
+      "accessToken":"",
+
+      "missionVos":
+      [
+
+         {
+
+            "missionId":0,
+
+            "DT_RowId":0,
+
+            "questVos":
+            [
+
+               {
+
+                  "questId":0,
+
+                  "missionId":0,
+
+                  "objects":"",
+
+                  "decription":"",
+
+                  "rewardVos":
+                  [
+
+                     {
+
+                        "quantity":0,
+
+                        "rewardType":0,
+
+                        "value":0
+
+                     }
+
+
+
+                  ],
+
+                  "name":"",
+
+                  "type":0,
+
+                  "locked":false
+
+               }
+
+
+
+            ],
+
+            "name":""
+
+         }
+
+
+
+      ],
+
+      "cash":0,
+
+      "cashType":0,
+
+      "roleVo":
+      {
+
+         "roleId":0,
+
+         "priviledge":0,
+
+         "label":""
+
+      },
+
+      "gcsSessionId":"",
+
+      "lastLogin":1417577729043,
+
+      "inventoryVos":
+      {
+
+         "itemVos":
+         [
+
+            {
+
+               "itemId":0,
+
+               "itemName":"",
+
+               "quantity":0,
+
+               "description":""
+
+            }
+
+
+
+         ]
+
+
+
+      },
+
+      "syncStatusVo":
+      {
+
+         "latestGameSessionId":0,
+
+         "nextSessionId":0,
+
+         "segmentCount":0,
+
+         "latestSegment":0,
+
+         "latestUpdateTime":0,
+
+         "deviceId":"",
+
+         "completedSessionCount":0
+
+      },
+
+      "missionStatusVo":
+      {
+
+         "missionStatus":
+         {
+
+            "1":
+            [
+
+               0,
+
+               0,
+
+               0,
+
+               0,
+
+               0
+
+            ]
+
+
+
+         },
+
+         "missionStars":
+         {
+
+            "1":1.0
+
+         }
+
+
+
+      },
+
+      "name":"",
+
+      "level":0,
+
+      "status":0,
+
+      "children":
+      [
+
+         null
+
+      ]
+
+
+
+   },
+
+   "statusCode":0,
+
+   "additionalInfo":null
+
+}
+</code></pre> 
+   <h4>(3) register</h4> 
+   <p><strong>URL:</strong> <br><code>/register</code></p> 
+   <p><strong>RequsetMethod:</strong> <br><code>POST</code></p> 
+   <p><strong>Request Parameters:</strong></p> 
+   <table> 
+    <thead> 
+     <tr> 
+      <th>Name</th> 
+      <th>Type</th> 
+      <th>Mock</th> 
+      <th>Reference</th> 
+     </tr> 
+    </thead> 
+    <tbody> 
+     <tr> 
+      <td>emailAddress</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>password</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>name</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>childName</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+    </tbody> 
+   </table> 
+   <p><strong>Response:</strong></p> 
+   <pre><code>{
+
+   "response":
+   {
+
+      "coin":0,
+
+      "userId":0,
+
+      "age":0,
+
+      "gender":0,
+
+      "emailAddress":"",
+
+      "allowSessionCount":0,
+
+      "exp":0,
+
+      "parentEmail":"",
+
+      "accessToken":"",
+
+      "missionVos":
+      [
+
+         {
+
+            "missionId":0,
+
+            "DT_RowId":0,
+
+            "questVos":
+            [
+
+               {
+
+                  "questId":0,
+
+                  "missionId":0,
+
+                  "objects":"",
+
+                  "decription":"",
+
+                  "rewardVos":
+                  [
+
+                     {
+
+                        "quantity":0,
+
+                        "rewardType":0,
+
+                        "value":0
+
+                     }
+
+
+
+                  ],
+
+                  "name":"",
+
+                  "type":0,
+
+                  "locked":false
+
+               }
+
+
+
+            ],
+
+            "name":""
+
+         }
+
+
+
+      ],
+
+      "cash":0,
+
+      "cashType":0,
+
+      "roleVo":
+      {
+
+         "roleId":0,
+
+         "priviledge":0,
+
+         "label":""
+
+      },
+
+      "gcsSessionId":"",
+
+      "lastLogin":1417577729044,
+
+      "inventoryVos":
+      {
+
+         "itemVos":
+         [
+
+            {
+
+               "itemId":0,
+
+               "itemName":"",
+
+               "quantity":0,
+
+               "description":""
+
+            }
+
+
+
+         ]
+
+
+
+      },
+
+      "syncStatusVo":
+      {
+
+         "latestGameSessionId":0,
+
+         "nextSessionId":0,
+
+         "segmentCount":0,
+
+         "latestSegment":0,
+
+         "latestUpdateTime":0,
+
+         "deviceId":"",
+
+         "completedSessionCount":0
+
+      },
+
+      "missionStatusVo":
+      {
+
+         "missionStatus":
+         {
+
+            "1":
+            [
+
+               0,
+
+               0,
+
+               0,
+
+               0,
+
+               0
+
+            ]
+
+
+
+         },
+
+         "missionStars":
+         {
+
+            "1":1.0
+
+         }
+
+
+
+      },
+
+      "name":"",
+
+      "level":0,
+
+      "status":0,
+
+      "children":
+      [
+
+         null
+
+      ]
+
+
+
+   },
+
+   "statusCode":0,
+
+   "additionalInfo":null
+
+}
+</code></pre> 
+   <h4>(4) children</h4> 
+   <p><strong>URL:</strong> <br><code>/children</code></p> 
+   <p><strong>RequsetMethod:</strong> <br><code>POST</code></p> 
+   <p><strong>Request Parameters:</strong></p> 
+   <table> 
+    <thead> 
+     <tr> 
+      <th>Name</th> 
+      <th>Type</th> 
+      <th>Mock</th> 
+      <th>Reference</th> 
+     </tr> 
+    </thead> 
+    <tbody> 
+     <tr> 
+      <td>emailAddress</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+    </tbody> 
+   </table> 
+   <p><strong>Response:</strong></p> 
+   <pre><code>{
+
+   "response":
+   {
+
+      "children":
+      [
+
+         {
+
+            "coin":0,
+
+            "userId":0,
+
+            "age":0,
+
+            "gender":0,
+
+            "emailAddress":"",
+
+            "allowSessionCount":0,
+
+            "exp":0,
+
+            "parentEmail":"",
+
+            "accessToken":"",
+
+            "missionVos":
+            [
+
+               {
+
+                  "missionId":0,
+
+                  "DT_RowId":0,
+
+                  "questVos":
+                  [
+
+                     {
+
+                        "questId":0,
+
+                        "missionId":0,
+
+                        "objects":"",
+
+                        "decription":"",
+
+                        "rewardVos":
+                        [
+
+                           {
+
+                              "quantity":0,
+
+                              "rewardType":0,
+
+                              "value":0
+
+                           }
+
+
+
+                        ],
+
+                        "name":"",
+
+                        "type":0,
+
+                        "locked":false
+
+                     }
+
+
+
+                  ],
+
+                  "name":""
+
+               }
+
+
+
+            ],
+
+            "cash":0,
+
+            "cashType":0,
+
+            "roleVo":
+            {
+
+               "roleId":0,
+
+               "priviledge":0,
+
+               "label":""
+
+            },
+
+            "gcsSessionId":"",
+
+            "lastLogin":1417577729046,
+
+            "inventoryVos":
+            {
+
+               "itemVos":
+               [
+
+                  {
+
+                     "itemId":0,
+
+                     "itemName":"",
+
+                     "quantity":0,
+
+                     "description":""
+
+                  }
+
+
+
+               ]
+
+
+
+            },
+
+            "syncStatusVo":
+            {
+
+               "latestGameSessionId":0,
+
+               "nextSessionId":0,
+
+               "segmentCount":0,
+
+               "latestSegment":0,
+
+               "latestUpdateTime":0,
+
+               "deviceId":"",
+
+               "completedSessionCount":0
+
+            },
+
+            "missionStatusVo":
+            {
+
+               "missionStatus":
+               {
+
+                  "1":
+                  [
+
+                     0,
+
+                     0,
+
+                     0,
+
+                     0,
+
+                     0
+
+                  ]
+
+
+
+               },
+
+               "missionStars":
+               {
+
+                  "1":1.0
+
+               }
+
+
+
+            },
+
+            "name":"",
+
+            "level":0,
+
+            "status":0,
+
+            "children":
+            [
+
+               null
+
+            ]
+
+
+
+         }
+
+
+
+      ]
+
+
+
+   },
+
+   "statusCode":0,
+
+   "additionalInfo":null
+
+}
+</code></pre> 
+   <h2>User</h2> 
+   <h4>(5) missionStatus</h4> 
+   <p><strong>URL:</strong> <br><code>/missionStatus</code></p> 
+   <p><strong>RequsetMethod:</strong> <br><code>POST</code></p> 
+   <p><strong>Request Parameters:</strong></p> 
+   <table> 
+    <thead> 
+     <tr> 
+      <th>Name</th> 
+      <th>Type</th> 
+      <th>Mock</th> 
+      <th>Reference</th> 
+     </tr> 
+    </thead> 
+    <tbody> 
+     <tr> 
+      <td>accessToken</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>exp</td> 
+      <td>int</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>missionStatusVo</td> 
+      <td>MissionStatusVo</td> 
+      <td class="mock"> {"missionStatus":{"1":[0,0,0,0,0]},"missionStars":{"1":1.0}}</td> 
+      <td>None</td> 
+     </tr> 
+    </tbody> 
+   </table> 
+   <p><strong>Response:</strong></p> 
+   <pre><code>{
+
+   "response":true,
+
+   "statusCode":0,
+
+   "additionalInfo":null
+
+}
+</code></pre> 
+   <h4>(6) forgotPassword</h4> 
+   <p><strong>URL:</strong> <br><code>/forgotPassword</code></p> 
+   <p><strong>RequsetMethod:</strong> <br><code>POST</code></p> 
+   <p><strong>Request Parameters:</strong></p> 
+   <table> 
+    <thead> 
+     <tr> 
+      <th>Name</th> 
+      <th>Type</th> 
+      <th>Mock</th> 
+      <th>Reference</th> 
+     </tr> 
+    </thead> 
+    <tbody> 
+     <tr> 
+      <td>emailAddress</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+    </tbody> 
+   </table> 
+   <p><strong>Response:</strong></p> 
+   <pre><code>{
+
+   "response":true,
+
+   "statusCode":0,
+
+   "additionalInfo":null
+
+}
+</code></pre> 
+   <h4>(7) resetPassword</h4> 
+   <p><strong>URL:</strong> <br><code>/resetPassword</code></p> 
+   <p><strong>RequsetMethod:</strong> <br><code>POST</code></p> 
+   <p><strong>Request Parameters:</strong></p> 
+   <table> 
+    <thead> 
+     <tr> 
+      <th>Name</th> 
+      <th>Type</th> 
+      <th>Mock</th> 
+      <th>Reference</th> 
+     </tr> 
+    </thead> 
+    <tbody> 
+     <tr> 
+      <td>accessToken</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>newPwd</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+    </tbody> 
+   </table> 
+   <p><strong>Response:</strong></p> 
+   <pre><code>{
+
+   "response":true,
+
+   "statusCode":0,
+
+   "additionalInfo":null
+
+}
+</code></pre> 
+   <h4>(8) missionSync</h4> 
+   <p><strong>URL:</strong> <br><code>/missionSync</code></p> 
+   <p><strong>RequsetMethod:</strong> <br><code>POST</code></p> 
+   <p><strong>Request Parameters:</strong></p> 
+   <table> 
+    <thead> 
+     <tr> 
+      <th>Name</th> 
+      <th>Type</th> 
+      <th>Mock</th> 
+      <th>Reference</th> 
+     </tr> 
+    </thead> 
+    <tbody> 
+     <tr> 
+      <td>accessToken</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>exp</td> 
+      <td>int</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>missionStatusVo</td> 
+      <td>MissionStatusVo</td> 
+      <td class="mock"> {"missionStatus":{"1":[0,0,0,0,0]},"missionStars":{"1":1.0}}</td> 
+      <td>None</td> 
+     </tr> 
+    </tbody> 
+   </table> 
+   <p><strong>Response:</strong></p> 
+   <pre><code>{
+
+   "response":true,
+
+   "statusCode":0,
+
+   "additionalInfo":null
+
+}
+</code></pre> 
+   <h2>Common</h2> 
+   <h4>(9) downloadData</h4> 
+   <p><strong>URL:</strong> <br><code>/downloadData</code></p> 
+   <p><strong>RequsetMethod:</strong> <br><code>GET</code></p> 
+   <p><strong>Request Parameters:</strong></p> 
+   <table> 
+    <thead> 
+     <tr> 
+      <th>Name</th> 
+      <th>Type</th> 
+      <th>Mock</th> 
+      <th>Reference</th> 
+     </tr> 
+    </thead> 
+    <tbody> 
+     <tr> 
+      <td>accessToken</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>clientLatestSessionId</td> 
+      <td>long</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+    </tbody> 
+   </table> 
+   <p><strong>Response:</strong></p> 
+   <pre><code>{
+
+   "response":
+   {
+
+      "gameSessionVos":
+      [
+
+         {
+
+            "endTime":0,
+
+            "userId":0,
+
+            "gameSessionId":0,
+
+            "activityVos":
+            [
+
+               {
+
+                  "score":0,
+
+                  "activityType":0,
+
+                  "victory":false,
+
+                  "coin":0,
+
+                  "itemId":
+                  [
+
+                     0,
+
+                     0,
+
+                     0,
+
+                     0,
+
+                     0
+
+                  ],
+
+                  "resourceId":
+                  [
+
+                     0,
+
+                     0,
+
+                     0,
+
+                     0,
+
+                     0
+
+                  ],
+
+                  "resourceCount":
+                  [
+
+                     0,
+
+                     0,
+
+                     0,
+
+                     0,
+
+                     0
+
+                  ],
+
+                  "neuralOutcomeVos":
+                  [
+
+                     {
+
+                        "outcomeScore":0.0,
+
+                        "originalData":""
+
+                     }
+
+
+
+                  ],
+
+                  "endTime":0,
+
+                  "questId":1,
+
+                  "missionId":0,
+
+                  "focusDataVo":
+                  {
+
+                     "rescueTier":0,
+
+                     "raceType":0,
+
+                     "rings":0,
+
+                     "collectionType":0,
+
+                     "objects":0,
+
+                     "rescueType":0,
+
+                     "rescues":0,
+
+                     "focusCategories":0
+
+                  },
+
+                  "regulationDataVo":
+                  {
+
+                     "trickExecuted":0,
+
+                     "trickInput":0,
+
+                     "promptedTaps":0,
+
+                     "inactiveTaps":0,
+
+                     "shootHits":0,
+
+                     "shootFired":0,
+
+                     "ictMininum":0,
+
+                     "ictMisses":0
+
+                  },
+
+                  "label":"",
+
+                  "startTime":0,
+
+                  "itemCount":
+                  [
+
+                     0,
+
+                     0,
+
+                     0,
+
+                     0,
+
+                     0
+
+                  ]
+
+
+
+               }
+
+
+
+            ],
+
+            "memoryDataVos":
+            [
+
+               {
+
+                  "perfectScore":0,
+
+                  "partialScore":0,
+
+                  "attempts":
+                  [
+
+                     {
+
+                        "sequenceLength":0,
+
+                        "correctAnswers":0
+
+                     }
+
+
+
+                  ],
+
+                  "sequenceTier":0
+
+               }
+
+
+
+            ],
+
+            "version":"",
+
+            "startTime":0
+
+         }
+
+
+
+      ]
+
+
+
+   },
+
+   "statusCode":0,
+
+   "additionalInfo":null
+
+}
+</code></pre> 
+   <h4>(10) missionDatas</h4> 
+   <p><strong>URL:</strong> <br><code>/missions</code></p> 
+   <p><strong>RequsetMethod:</strong> <br><code>GET</code></p> 
+   <p><strong>Request Parameters:</strong></p> 
+   <table> 
+    <thead> 
+     <tr> 
+      <th>Name</th> 
+      <th>Type</th> 
+      <th>Mock</th> 
+      <th>Reference</th> 
+     </tr> 
+    </thead> 
+    <tbody> 
+     <tr> 
+      <td>accessToken</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+    </tbody> 
+   </table> 
+   <p><strong>Response:</strong></p> 
+   <pre><code>{
+
+   "response":
+   {
+
+      "missionVos":
+      [
+
+         {
+
+            "missionId":0,
+
+            "DT_RowId":0,
+
+            "questVos":
+            [
+
+               {
+
+                  "questId":0,
+
+                  "missionId":0,
+
+                  "objects":"",
+
+                  "decription":"",
+
+                  "rewardVos":
+                  [
+
+                     {
+
+                        "quantity":0,
+
+                        "rewardType":0,
+
+                        "value":0
+
+                     }
+
+
+
+                  ],
+
+                  "name":"",
+
+                  "type":0,
+
+                  "locked":false
+
+               }
+
+
+
+            ],
+
+            "name":""
+
+         }
+
+
+
+      ]
+
+
+
+   },
+
+   "statusCode":0,
+
+   "additionalInfo":null
+
+}
+</code></pre> 
+   <h4>(11) missionData</h4> 
+   <p><strong>URL:</strong> <br><code>/mission/quest</code></p> 
+   <p><strong>RequsetMethod:</strong> <br><code>GET</code></p> 
+   <p><strong>Request Parameters:</strong></p> 
+   <table> 
+    <thead> 
+     <tr> 
+      <th>Name</th> 
+      <th>Type</th> 
+      <th>Mock</th> 
+      <th>Reference</th> 
+     </tr> 
+    </thead> 
+    <tbody> 
+     <tr> 
+      <td>accessToken</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>missionId</td> 
+      <td>long</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+    </tbody> 
+   </table> 
+   <p><strong>Response:</strong></p> 
+   <pre><code>{
+
+   "response":
+   {
+
+      "missionId":0,
+
+      "DT_RowId":0,
+
+      "questVos":
+      [
+
+         {
+
+            "questId":0,
+
+            "missionId":0,
+
+            "objects":"",
+
+            "decription":"",
+
+            "rewardVos":
+            [
+
+               {
+
+                  "quantity":0,
+
+                  "rewardType":0,
+
+                  "value":0
+
+               }
+
+
+
+            ],
+
+            "name":"",
+
+            "type":0,
+
+            "locked":false
+
+         }
+
+
+
+      ],
+
+      "name":""
+
+   },
+
+   "statusCode":0,
+
+   "additionalInfo":null
+
+}
+</code></pre> 
+   <h4>(12) sync</h4> 
+   <p><strong>URL:</strong> <br><code>/sync</code></p> 
+   <p><strong>RequsetMethod:</strong> <br><code>POST</code></p> 
+   <p><strong>Request Parameters:</strong></p> 
+   <table> 
+    <thead> 
+     <tr> 
+      <th>Name</th> 
+      <th>Type</th> 
+      <th>Mock</th> 
+      <th>Reference</th> 
+     </tr> 
+    </thead> 
+    <tbody> 
+     <tr> 
+      <td>accessToken</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>gameSessionId</td> 
+      <td>int</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>segmentCount</td> 
+      <td>int</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>segmentId</td> 
+      <td>int</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>deviceId</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>zipData</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+    </tbody> 
+   </table> 
+   <p><strong>Response:</strong></p> 
+   <pre><code>{
+
+   "response":true,
+
+   "statusCode":0,
+
+   "additionalInfo":null
+
+}
+</code></pre> 
+  </div> 
+  <script src="js/jquery.1.7.1.min.js" type="text/javascript"></script> 
+  <script src="js/urchin.js" type="text/javascript"></script> 
+  <script src="js/format.js" type="text/javascript"></script> 
+  <script src="js/tool.js" type="text/javascript"></script> 
+  <script type="text/javascript">
+	$(document).ready(function(){
+		$("pre > code").each(function(){
+			Process($(this),$(this).text());
+		})
+		
+		$(".mock").each(function(){
+			Process($(this),$(this).text());
+		})
+	})
+</script>  
+ </body>
+</html>

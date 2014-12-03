@@ -1,6 +1,6 @@
 window.SINGLE_TAB = "  ";
-window.ImgCollapsed = "Collapsed.gif";
-window.ImgExpanded = "Expanded.gif";
+window.ImgCollapsed = "../css/images/Collapsed.gif";
+window.ImgExpanded = "../css/images/Expanded.gif";
 window.QuoteKeys = true;
 function $id(id) {
 	return document.getElementById(id);
@@ -13,15 +13,20 @@ function IsArray(obj) {
 function Process(mockHtml,json) {
 	SetTab();
 	window.IsCollapsible = true;
-	console.log(json);
 	var html = "";
 	try {
 		if (json == "")
 			json = "\"\"";
-		var obj = eval("[" + json + "]");
+		var obj = eval("[" + json + "]"),
+			nodeName = mockHtml.context.nodeName;
 		html = ProcessObject(obj[0], 0, false, false, false);
-		mockHtml.html("<PRE class='CodeContainer'>" + html
-				+ "</PRE>");
+		if("CODE" === nodeName){
+			mockHtml.html("<div class='CodeContainer'>" + html
+					+ "</div>");
+		}else{
+			mockHtml.html("<pre class='CodeContainer'>" + html
+					+ "</pre>");
+		}
 	} catch (e) {
 		alert("JSON Data Type Error:\n" + e.message);
 	}
