@@ -21,12 +21,12 @@ public class ErrorCodeDocBuilder extends AbstractBaseBuilder {
 
 	public static void main(String[] args) throws Exception {
 		ErrorCodeDocBuilder errorCodeDocBuilder = new ErrorCodeDocBuilder();
-		errorCodeDocBuilder.build();
+		errorCodeDocBuilder.build("config/init_gameserver_error_code.properties");
 	}
 
-	public void build() throws Exception {
+	public void build(String errorCodeConfig) throws Exception {
 		initTemplate(templateFile);
-		File codeFile = new File("config/init_gameserver_error_code.properties");
+		File codeFile = new File(errorCodeConfig);
 		if (codeFile.exists()) {
 			Properties prop = new Properties();
 			prop.load(new FileInputStream(codeFile));
@@ -62,8 +62,7 @@ public class ErrorCodeDocBuilder extends AbstractBaseBuilder {
 
 		String result = writer.toString();
 
-		writeStringToFile(result, outputDir1, "/error_code.html");
-		writeStringToFile(result, outputDir2, "/error_code.html");
+		writeStringToFile(result, outputDir, "/error_code.html");
 	}
 
 }

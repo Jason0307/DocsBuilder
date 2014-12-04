@@ -40,21 +40,19 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 	ObjectMapper objectMapper = new ObjectMapper();
 	ParameterNameDiscoverer nameDiscoverer = new LocalVariableTableParameterNameDiscoverer();
 	static int GENERATE_TYPE = Constants.GENERATE_MARKDOWN;
-	String templateFile = "/org/zhubao/docx/template/api_markdown.ftl";
-	String packageToFindController = "org.zhubao.controller";
 
 	public static void main(String[] args) throws Exception {
 		ApiDocBuilder apiDocBuilder = new ApiDocBuilder();
-		apiDocBuilder.build();
+		apiDocBuilder.build("org.zhubao.controller");
 	}
 
-	public void build() throws Exception {
-		if(Constants.GENERATE_HTML == GENERATE_TYPE){
-			templateFile = "/org/zhubao/docx/template/api_demo.ftl";
-		}
+	public void build(String controllerPackages) throws Exception {
+		String templateFile = getTemplateFileByType(GENERATE_TYPE);
 		initTemplate(templateFile);
-		String[] packages = packageToFindController.split(",");
-		outputDir1 = outputDir1 + ((Constants.GENERATE_MARKDOWN == GENERATE_TYPE) ? "/markdown" : "/html/report");
+		String[] packages = controllerPackages.split(",");
+		outputDir = outputDir
+				+ ((Constants.GENERATE_MARKDOWN == GENERATE_TYPE) ? "/markdown"
+						: "/html/report");
 		int i = 1;
 		for (String packageName : packages) {
 			Map<String, Vector<ApiObject>> apiObjectGroup = new HashMap<String, Vector<ApiObject>>();
@@ -62,17 +60,32 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 			for (Class<?> clazz : classes) {
 				parseControllerClass(clazz, apiObjectGroup);
 			}
-			if(Constants.GENERATE_MARKDOWN == GENERATE_TYPE){
+			if (Constants.GENERATE_MARKDOWN == GENERATE_TYPE) {
 				String fileName = "/api" + i + ".md";
 				outputDoc(fileName, apiObjectGroup);
 				renderHtml(fileName);
-			}else{
+			} else {
 				String fileName = "/api" + i + ".html";
 				outputDoc(fileName, apiObjectGroup);
 			}
 			i++;
 		}
 
+	}
+
+	private String getTemplateFileByType(int generationType) {
+		String templateFile = "";
+		switch (generationType) {
+		case Constants.GENERATE_HTML:
+			templateFile = "/org/zhubao/docx/template/api_html.ftl";
+			break;
+		case Constants.GENERATE_MARKDOWN:
+			templateFile = "/org/zhubao/docx/template/api_markdown.ftl";
+			break;
+		default:
+			break;
+		}
+		return templateFile;
 	}
 
 	private Collection<Class<?>> getControllerClasses(String packageName)
@@ -82,6 +95,7 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 				.getResources("");
 		while (urls.hasMoreElements()) {
 			URL url = urls.nextElement();
+			System.out.println("Url :" + url.getFile() + " , package : " + packageName);
 			File file = new File(url.getFile() + "/"
 					+ packageToPath(packageName));
 			if (file.exists()) {
@@ -208,22 +222,24 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 		StringWriter writer = new StringWriter();
 		template.process(context, writer);
 		String result = writer.toString();
-		writeStringToFile(result, outputDir1, fileName);
-		writeStringToFile(result, outputDir2, fileName);
+		writeStringToFile(result, outputDir, fileName);
 	}
-	
+
 	/**
 	 * @param outputDir1
 	 * @param fileName
 	 */
-	private void renderHtml(String fileName)
-			throws Exception {
+	private void renderHtml(String fileName) throws Exception {
 		Markdown4jProcessor processor = new Markdown4jProcessor();
-		Reader in = new FileReader(outputDir1 + "/" + fileName);
+		Reader in = new FileReader(outputDir + "/" + fileName);
 		String htmlName = fileName.substring(0, fileName.lastIndexOf("."));
-		Writer out = new FileWriter(outputDir1 + "/report/" + htmlName + ".html");
+		File reportDir = new File(outputDir + "/report");
+		if(!reportDir.exists()){
+			reportDir.mkdirs();
+		}
+		Writer out = new FileWriter(outputDir + "/report/" + htmlName + ".html");
 		String s = processor.process(in);
-		Document doc = Jsoup.parse(new File(outputDir1
+		Document doc = Jsoup.parse(new File(outputDir
 				+ "/template/template.html"), "UTF-8");
 		doc.getElementById("content").append(s);
 		out.write(doc.html());
@@ -313,7 +329,9 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 	}
 
 	/**
-	 * this method is uesd to get the value for the primary type (Integer,Long,Array...)
+	 * this method is uesd to get the value for the primary type
+	 * (Integer,Long,Array...)
+	 * 
 	 * @param gClazz
 	 *            generic class
 	 * @param clazz
@@ -344,6 +362,7 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 
 	/**
 	 * get the setMethod for the field
+	 * 
 	 * @param clazz
 	 * @param name
 	 * @param fClz
@@ -360,6 +379,7 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 
 	/**
 	 * get the list field size value
+	 * 
 	 * @param field
 	 * @return
 	 */

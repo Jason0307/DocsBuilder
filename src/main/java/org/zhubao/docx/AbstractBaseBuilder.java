@@ -15,8 +15,7 @@ import freemarker.template.Template;
 
 public abstract class AbstractBaseBuilder {
 
-	protected String outputDir1;
-	protected String outputDir2;
+	protected String outputDir;
 
 	protected Template template;
 
@@ -93,20 +92,12 @@ public abstract class AbstractBaseBuilder {
 		log("Write file: " + file);
 	}
 
-	public String getOutputDir1() {
-		return outputDir1;
+	public String getOutputDir() {
+		return outputDir;
 	}
 
-	public void setOutputDir1(String outputDir1) {
-		this.outputDir1 = outputDir1;
-	}
-
-	public String getOutputDir2() {
-		return outputDir2;
-	}
-
-	public void setOutputDir2(String outputDir2) {
-		this.outputDir2 = outputDir2;
+	public void setOutputDir(String outputDir) {
+		this.outputDir = outputDir;
 	}
 
 }

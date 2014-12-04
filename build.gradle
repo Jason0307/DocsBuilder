@@ -25,10 +25,10 @@ List dependJars = [  'commons-collections:commons-collections:3.2',
 					 'org.springframework:spring-orm:4.0.0.RELEASE',
 					 'org.springframework:spring-tx:4.0.0.RELEASE',
 					 'org.springframework:spring-test:4.0.0.RELEASE',
-					 'org.springframework:spring-aspects:4.0.0.RELEASE',
 					 'org.springframework:spring-webmvc:4.0.0.RELEASE',
 					 'org.commonjava.googlecode.markdown4j:markdown4j:2.2-cj-1.0',
-					 'org.jsoup:jsoup:1.7.3'
+					 'org.jsoup:jsoup:1.7.3',
+					 'org.apache.struts:struts2-core:2.3.4'
 			 ]
 dependencies {
     compile dependJars

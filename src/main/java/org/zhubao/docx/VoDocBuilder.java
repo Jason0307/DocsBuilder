@@ -29,10 +29,10 @@ public class VoDocBuilder extends AbstractBaseBuilder {
 
 	public static void main(String[] args) throws Exception {
 		VoDocBuilder voDocBuilder = new VoDocBuilder();
-		voDocBuilder.build();
+		voDocBuilder.build("org.zhubao.vo");
 	}
 
-	public void build() throws Exception {
+	public void build(String voPackage) throws Exception {
 		initTemplate(templateFile);
 
 		Collection<Class<?>> classes = getVoClasses();
@@ -201,8 +201,7 @@ public class VoDocBuilder extends AbstractBaseBuilder {
 
 		String result = writer.toString();
 
-		writeStringToFile(result, outputDir1, "/vo.html");
-		writeStringToFile(result, outputDir2, "/vo.html");
+		writeStringToFile(result, outputDir, "/vo.html");
 	}
 
 }

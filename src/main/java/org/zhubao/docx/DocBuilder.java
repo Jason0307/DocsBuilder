@@ -2,24 +2,21 @@ package org.zhubao.docx;
 
 public class DocBuilder {
 
-	public static void main(String[] args) throws Exception {
-		String outputDir1 = "docs/generated";
-		String outputDir2 = "docs/generated";
-
+	public static void  buildDocs(String controllerPackage,String voPackage,String errorCodeConfig,String outputDir) throws Exception{
 		VoDocBuilder voDocBuilder = new VoDocBuilder();
-		voDocBuilder.setOutputDir1(outputDir1);
-		voDocBuilder.setOutputDir2(outputDir2);
-		voDocBuilder.build();
+		voDocBuilder.setOutputDir(outputDir);
+		voDocBuilder.build(voPackage);
 
 		ApiDocBuilder apiDocBuilder = new ApiDocBuilder();
-		apiDocBuilder.setOutputDir1(outputDir1);
-		apiDocBuilder.setOutputDir2(outputDir2);
-		apiDocBuilder.build();
+		apiDocBuilder.setOutputDir(outputDir);
+		apiDocBuilder.build(controllerPackage);
 		
 		ErrorCodeDocBuilder errorCodeDocBuilder = new ErrorCodeDocBuilder();
-		errorCodeDocBuilder.setOutputDir1(outputDir1);
-		errorCodeDocBuilder.setOutputDir2(outputDir2);
-		errorCodeDocBuilder.build();
+		errorCodeDocBuilder.setOutputDir(outputDir);
+		errorCodeDocBuilder.build(errorCodeConfig);
+	}
+	public static void main(String[] args) throws Exception {
+		DocBuilder.buildDocs("org.zhubao.controller", "org.zhubao.vo", "config/init_gameserver_error_code.properties", "docs/generated");
 	}
 
 }
