@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.zhubao.docx;
+package org.zhubao.util;
 
 import org.apache.commons.lang.StringUtils;
 

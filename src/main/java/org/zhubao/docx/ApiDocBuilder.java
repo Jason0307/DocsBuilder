@@ -33,6 +33,16 @@ import org.markdown4j.Markdown4jProcessor;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.core.ParameterNameDiscoverer;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.zhubao.annotation.IntegerSequence;
+import org.zhubao.annotation.IntegerType;
+import org.zhubao.annotation.ListSize;
+import org.zhubao.annotation.StringSequence;
+import org.zhubao.annotation.StringType;
+import org.zhubao.util.BuilderUtil;
+import org.zhubao.util.Constants;
+import org.zhubao.util.FormatUtil;
+import org.zhubao.util.IStatusCode;
+import org.zhubao.util.Response;
 
 import sun.reflect.generics.reflectiveObjects.GenericArrayTypeImpl;
 
@@ -40,7 +50,6 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 	ObjectMapper objectMapper = new ObjectMapper();
 	ParameterNameDiscoverer nameDiscoverer = new LocalVariableTableParameterNameDiscoverer();
 	static int GENERATE_TYPE = Constants.GENERATE_MARKDOWN;
-	String templateFile = "/org/zhubao/docx/template/api_markdown.ftl";
 	String packageToFindController = "org.zhubao.controller";
 
 	public static void main(String[] args) throws Exception {
@@ -49,12 +58,12 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 	}
 
 	public void build() throws Exception {
-		if(Constants.GENERATE_HTML == GENERATE_TYPE){
-			templateFile = "/org/zhubao/docx/template/api_demo.ftl";
-		}
+		String templateFile = getTemplateFileByGernerateType(GENERATE_TYPE);
 		initTemplate(templateFile);
 		String[] packages = packageToFindController.split(",");
-		outputDir1 = outputDir1 + ((Constants.GENERATE_MARKDOWN == GENERATE_TYPE) ? "/markdown" : "/html/report");
+		outputDir1 = outputDir1
+				+ ((Constants.GENERATE_MARKDOWN == GENERATE_TYPE) ? "/markdown"
+						: "/html/report");
 		int i = 1;
 		for (String packageName : packages) {
 			Map<String, Vector<ApiObject>> apiObjectGroup = new HashMap<String, Vector<ApiObject>>();
@@ -62,17 +71,38 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 			for (Class<?> clazz : classes) {
 				parseControllerClass(clazz, apiObjectGroup);
 			}
-			if(Constants.GENERATE_MARKDOWN == GENERATE_TYPE){
+			if (Constants.GENERATE_MARKDOWN == GENERATE_TYPE) {
 				String fileName = "/api" + i + ".md";
 				outputDoc(fileName, apiObjectGroup);
 				renderHtml(fileName);
-			}else{
+			} else {
 				String fileName = "/api" + i + ".html";
 				outputDoc(fileName, apiObjectGroup);
 			}
 			i++;
 		}
 
+	}
+
+	/**
+	 * get the template file by the gernerate type
+	 * 
+	 * @param generateType
+	 * @return
+	 */
+	private String getTemplateFileByGernerateType(int generateType) {
+		String templateFile = "";
+		switch (generateType) {
+		case Constants.GENERATE_HTML:
+			templateFile = "/org/zhubao/docx/template/api_html.ftl";
+			break;
+		case Constants.GENERATE_MARKDOWN:
+			templateFile = "/org/zhubao/docx/template/api_markdown.ftl";
+			break;
+		default:
+			break;
+		}
+		return templateFile;
 	}
 
 	private Collection<Class<?>> getControllerClasses(String packageName)
@@ -137,6 +167,7 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 			List<ApiParameter> parameters = new ArrayList<ApiParameter>();
 			Class<?>[] pmClasses = method.getParameterTypes();
 			String[] pmNames = nameDiscoverer.getParameterNames(method);
+			Annotation[][] pAnnotations = method.getParameterAnnotations();
 			for (int i = 0; i < pmClasses.length; i++) {
 				Class<?> pmClass = pmClasses[i];
 				String pmName = pmNames[i];
@@ -148,6 +179,29 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 						apiParameter.setMockData(objectMapper
 								.writeValueAsString(getReturnMockData(pmClass,
 										pmClass.newInstance())));
+					}
+					Annotation[] annotations = pAnnotations[i];
+					for (Annotation annotation : annotations) {
+						if (annotation instanceof IntegerSequence) {
+							IntegerSequence integerSequence = (IntegerSequence) annotation;
+							IntegerType[] types = integerSequence.value();
+							StringBuilder sBuilder = new StringBuilder("{");
+							for (int k = 0; k < types.length; k++) {
+								IntegerType type = types[k];
+								sBuilder.append(type.toString());
+								if (k < types.length - 1) {
+									sBuilder.append(",");
+								}
+							}
+							sBuilder.append("}");
+							apiParameter.setReference(sBuilder.toString());
+						}
+						if (annotation instanceof StringSequence) {
+							StringSequence stringSequence = (StringSequence) annotation;
+							StringType[] types = stringSequence.value();
+							apiParameter.setReference(objectMapper
+									.writeValueAsString(types));
+						}
 					}
 					parameters.add(apiParameter);
 				}
@@ -209,19 +263,19 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 		template.process(context, writer);
 		String result = writer.toString();
 		writeStringToFile(result, outputDir1, fileName);
-		writeStringToFile(result, outputDir2, fileName);
 	}
-	
+
 	/**
-	 * @param outputDir1
+	 * this method is used to render the html via md file
+	 * 
 	 * @param fileName
 	 */
-	private void renderHtml(String fileName)
-			throws Exception {
+	private void renderHtml(String fileName) throws Exception {
 		Markdown4jProcessor processor = new Markdown4jProcessor();
 		Reader in = new FileReader(outputDir1 + "/" + fileName);
 		String htmlName = fileName.substring(0, fileName.lastIndexOf("."));
-		Writer out = new FileWriter(outputDir1 + "/report/" + htmlName + ".html");
+		Writer out = new FileWriter(outputDir1 + "/report/" + htmlName
+				+ ".html");
 		String s = processor.process(in);
 		Document doc = Jsoup.parse(new File(outputDir1
 				+ "/template/template.html"), "UTF-8");
@@ -313,7 +367,9 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 	}
 
 	/**
-	 * this method is uesd to get the value for the primary type (Integer,Long,Array...)
+	 * this method is uesd to get the value for the primary type
+	 * (Integer,Long,Array...)
+	 * 
 	 * @param gClazz
 	 *            generic class
 	 * @param clazz
@@ -344,6 +400,7 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 
 	/**
 	 * get the setMethod for the field
+	 * 
 	 * @param clazz
 	 * @param name
 	 * @param fClz
@@ -360,6 +417,7 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 
 	/**
 	 * get the list field size value
+	 * 
 	 * @param field
 	 * @return
 	 */

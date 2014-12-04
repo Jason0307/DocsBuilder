@@ -1,20 +1,20 @@
 /**
  * 
  */
-package org.zhubao.docx;
+package org.zhubao.annotation;
 
 /**
  * @author jason.zhu
  * @date 2014-12-2
  * @email jasonzhu@augmentum.com.cn
  */
-public enum ValidateType {
+public enum IntegerType {
 
-	Name(1), Email(2), Password(3), Age(4), Gender(5),Web(1),Phone(2);
+	Name(1), Email(2), Password(3), Age(4), Gender(5);
 
 	private int type;
 
-	private ValidateType(int type) {
+	private IntegerType(int type) {
 		this.type = type;
 	}
 

@@ -1,4 +1,4 @@
-package org.zhubao.docx;
+package org.zhubao.util;
 
 public interface IStatusCode {
 

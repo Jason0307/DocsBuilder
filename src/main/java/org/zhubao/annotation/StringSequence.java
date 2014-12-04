@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.zhubao.docx;
+package org.zhubao.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -11,14 +11,14 @@ import java.lang.annotation.Target;
 
 /**
  * @author jason.zhu
- * @date 2014-12-2
+ * @date   2014-12-3
  * @email jasonzhu@augmentum.com.cn
  */
-@Target({ ElementType.FIELD, ElementType.PARAMETER })
+@Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface FieldSequence {
+public @interface StringSequence {
 
-	ValidateType[] value() default { ValidateType.Name, ValidateType.Email,
-			ValidateType.Password, ValidateType.Age, ValidateType.Gender };
+	StringType[] value() default {StringType.Web,StringType.Phone};
+	
 }

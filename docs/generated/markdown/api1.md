@@ -30,6 +30,12 @@
 			<td>None</td>
 			<td>None</td>
 		</tr>
+		<tr>
+			<td>device</td>
+			<td>String</td>
+			<td>None</td>
+			<td class="mock"> ["Web","Phone"]</td>
+		</tr>
 	</tbody>
 </table>
 

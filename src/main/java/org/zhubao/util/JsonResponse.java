@@ -2,7 +2,6 @@ package org.zhubao.util;
 
 import java.io.Serializable;
 
-import org.zhubao.docx.IStatusCode;
 
 public class JsonResponse<T> implements Serializable {
 

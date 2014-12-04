@@ -1,4 +1,4 @@
-package org.zhubao.docx;
+package org.zhubao.util;
 
 public class BuilderUtil {
 
@@ -22,7 +22,10 @@ public class BuilderUtil {
 		if (className.startsWith("org.")) {
 			return false;
 		}
-		return true;
+		if(className.contains("Vo")){
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean hasReference(String value){
