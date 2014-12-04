@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Vector;
 
 import org.apache.commons.io.FilenameUtils;
+import org.zhubao.util.BuilderUtil;
 
 public class VoDocBuilder extends AbstractBaseBuilder {
 

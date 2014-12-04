@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.zhubao.docx;
+package org.zhubao.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

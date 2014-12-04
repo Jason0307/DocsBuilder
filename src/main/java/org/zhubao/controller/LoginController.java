@@ -6,7 +6,8 @@ package org.zhubao.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.zhubao.docx.IStatusCode;
+import org.zhubao.annotation.StringSequence;
+import org.zhubao.util.IStatusCode;
 import org.zhubao.util.JsonResponse;
 import org.zhubao.vo.UserVo;
 
@@ -20,7 +21,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/login",method = RequestMethod.POST)
 	
-	public JsonResponse<UserVo> login(String emailAddress,String password){
+	public JsonResponse<UserVo> login(String emailAddress,String password,@StringSequence String device){
 		return new JsonResponse<UserVo>(IStatusCode.SUCCESS,new UserVo());
 	}
 }
