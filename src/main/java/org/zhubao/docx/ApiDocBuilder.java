@@ -33,6 +33,16 @@ import org.markdown4j.Markdown4jProcessor;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.core.ParameterNameDiscoverer;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.zhubao.annotation.IntegerSequence;
+import org.zhubao.annotation.IntegerType;
+import org.zhubao.annotation.ListSize;
+import org.zhubao.annotation.StringSequence;
+import org.zhubao.annotation.StringType;
+import org.zhubao.util.BuilderUtil;
+import org.zhubao.util.Constants;
+import org.zhubao.util.FormatUtil;
+import org.zhubao.util.IStatusCode;
+import org.zhubao.util.Response;
 
 import sun.reflect.generics.reflectiveObjects.GenericArrayTypeImpl;
 
@@ -47,7 +57,7 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 	}
 
 	public void build(String controllerPackages) throws Exception {
-		String templateFile = getTemplateFileByType(GENERATE_TYPE);
+		String templateFile = getTemplateFileByGernerateType(GENERATE_TYPE);
 		initTemplate(templateFile);
 		String[] packages = controllerPackages.split(",");
 		outputDir = outputDir
@@ -73,9 +83,15 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 
 	}
 
-	private String getTemplateFileByType(int generationType) {
+	/**
+	 * get the template file by the gernerate type
+	 * 
+	 * @param generateType
+	 * @return
+	 */
+	private String getTemplateFileByGernerateType(int generateType) {
 		String templateFile = "";
-		switch (generationType) {
+		switch (generateType) {
 		case Constants.GENERATE_HTML:
 			templateFile = "/org/zhubao/docx/template/api_html.ftl";
 			break;
@@ -151,6 +167,7 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 			List<ApiParameter> parameters = new ArrayList<ApiParameter>();
 			Class<?>[] pmClasses = method.getParameterTypes();
 			String[] pmNames = nameDiscoverer.getParameterNames(method);
+			Annotation[][] pAnnotations = method.getParameterAnnotations();
 			for (int i = 0; i < pmClasses.length; i++) {
 				Class<?> pmClass = pmClasses[i];
 				String pmName = pmNames[i];
@@ -162,6 +179,29 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 						apiParameter.setMockData(objectMapper
 								.writeValueAsString(getReturnMockData(pmClass,
 										pmClass.newInstance())));
+					}
+					Annotation[] annotations = pAnnotations[i];
+					for (Annotation annotation : annotations) {
+						if (annotation instanceof IntegerSequence) {
+							IntegerSequence integerSequence = (IntegerSequence) annotation;
+							IntegerType[] types = integerSequence.value();
+							StringBuilder sBuilder = new StringBuilder("{");
+							for (int k = 0; k < types.length; k++) {
+								IntegerType type = types[k];
+								sBuilder.append(type.toString());
+								if (k < types.length - 1) {
+									sBuilder.append(",");
+								}
+							}
+							sBuilder.append("}");
+							apiParameter.setReference(sBuilder.toString());
+						}
+						if (annotation instanceof StringSequence) {
+							StringSequence stringSequence = (StringSequence) annotation;
+							StringType[] types = stringSequence.value();
+							apiParameter.setReference(objectMapper
+									.writeValueAsString(types));
+						}
 					}
 					parameters.add(apiParameter);
 				}
@@ -226,7 +266,8 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 	}
 
 	/**
-	 * @param outputDir1
+	 * this method is used to render the html via md file
+	 * 
 	 * @param fileName
 	 */
 	private void renderHtml(String fileName) throws Exception {

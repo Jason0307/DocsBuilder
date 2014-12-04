@@ -1,0 +1,94 @@
+<html>
+ <head> 
+  <title>Bball - Server API</title> 
+  <link href="../css/format.css" type="text/css" rel="stylesheet" /> 
+  <link href="../css/github-markdown.css" type="text/css" rel="stylesheet" /> 
+ </head> 
+ <body> 
+  <div id="content">
+   <h2>Login</h2> 
+   <h4>(1) login</h4> 
+   <p><strong>URL:</strong> <br /><code>/login</code></p> 
+   <p><strong>RequsetMethod:</strong> <br /><code>POST</code></p> 
+   <p><strong>Request Parameters:</strong></p> 
+   <table> 
+    <thead> 
+     <tr> 
+      <th>Name</th> 
+      <th>Type</th> 
+      <th>Mock</th> 
+      <th>Reference</th> 
+     </tr> 
+    </thead> 
+    <tbody> 
+     <tr> 
+      <td>emailAddress</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>password</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td>None</td> 
+     </tr> 
+     <tr> 
+      <td>device</td> 
+      <td>String</td> 
+      <td>None</td> 
+      <td class="mock"> [&quot;Web&quot;,&quot;Phone&quot;]</td> 
+     </tr> 
+    </tbody> 
+   </table> 
+   <p><strong>Response:</strong></p> 
+   <pre><code>{
+
+   &quot;statusCode&quot;:0,
+
+   &quot;additionalInfo&quot;:null,
+
+   &quot;response&quot;:
+   {
+
+      &quot;userId&quot;:0,
+
+      &quot;username&quot;:&quot;&quot;,
+
+      &quot;email&quot;:&quot;&quot;,
+
+      &quot;walletVo&quot;:
+      {
+
+         &quot;walletType&quot;:0,
+
+         &quot;value&quot;:0
+
+      }
+
+
+
+   }
+
+
+
+}
+</code></pre> 
+  </div> 
+  <script src="../js/jquery.1.7.1.min.js" type="text/javascript"></script> 
+  <script src="../js/urchin.js" type="text/javascript"></script> 
+  <script src="../js/format.js" type="text/javascript"></script> 
+  <script src="../js/tool.js" type="text/javascript"></script> 
+  <script type="text/javascript">
+	$(document).ready(function(){
+		$("pre > code").each(function(){
+			Process($(this),$(this).text());
+		})
+		
+		$(".mock").each(function(){
+			Process($(this),$(this).text());
+		})
+	})
+</script>  
+ </body>
+</html>
