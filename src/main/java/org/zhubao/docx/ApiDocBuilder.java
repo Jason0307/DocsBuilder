@@ -146,7 +146,6 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 
 		for (Method method : clazz.getDeclaredMethods()) {
 			ApiObject apiObject = new ApiObject();
-			System.out.println("Controller method :" + method.getName());
 			boolean hasRequestMapping = false;
 			for (Annotation annotation : method.getDeclaredAnnotations()) {
 				if (annotation instanceof RequestMapping) {

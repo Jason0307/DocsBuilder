@@ -13,15 +13,20 @@ import org.zhubao.vo.UserVo;
 
 /**
  * @author jason.zhu
- * @date   2014-11-24
+ * @date 2014-11-24
  * @email jasonzhu@augmentum.com.cn
  */
 @Controller
 public class LoginController {
 
-	@RequestMapping(value = "/login",method = RequestMethod.POST)
-	
-	public JsonResponse<UserVo> login(String emailAddress,String password,@StringSequence String device){
-		return new JsonResponse<UserVo>(IStatusCode.SUCCESS,new UserVo());
+	@RequestMapping(value = "/user/login", method = RequestMethod.POST)
+	public JsonResponse<UserVo> login(String emailAddress, String password,
+			@StringSequence String device) {
+		return new JsonResponse<UserVo>(IStatusCode.SUCCESS, new UserVo());
+	}
+
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public JsonResponse<UserVo> register(String username, String eamil,String icon) {
+		return new JsonResponse<UserVo>(IStatusCode.SUCCESS, new UserVo());
 	}
 }

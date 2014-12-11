@@ -1,0 +1,166 @@
+{
+   "docusign":
+   {
+      "name":"Jason Api Template",
+      "protocol":"http",
+      "baseURL":"/flight/dashboard/",
+      "version":"v3",
+      "endpoints":
+      [
+         {
+            "name":"Game",
+            "methods":
+            [
+               {
+                  "methodName":"gameList",
+                  "synopsis":null,
+                  "httpMethod":"GET",
+                  "protocol":"http",
+                  "uri":"/game/list",
+                  "parameters":
+                  [
+                     "accessToken"
+                  ]
+
+               },
+               {
+                  "methodName":"progressDetail",
+                  "synopsis":null,
+                  "httpMethod":"GET",
+                  "protocol":"http",
+                  "uri":"/:accessToken/progress/detail",
+                  "parameters":
+                  [
+                     "accessToken",
+                     "childId",
+                     "device"
+                  ]
+
+               }
+
+            ]
+
+         },
+         {
+            "name":"Login",
+            "methods":
+            [
+               {
+                  "methodName":"register",
+                  "synopsis":null,
+                  "httpMethod":"POST",
+                  "protocol":"http",
+                  "uri":"/register",
+                  "parameters":
+                  [
+                     "username",
+                     "eamil",
+                     "icon"
+                  ]
+
+               },
+               {
+                  "methodName":"login",
+                  "synopsis":null,
+                  "httpMethod":"POST",
+                  "protocol":"http",
+                  "uri":"/user/login",
+                  "parameters":
+                  [
+                     "emailAddress",
+                     "password",
+                     "device"
+                  ]
+
+               }
+
+            ]
+
+         }
+
+      ],
+      "types":
+      {
+         "icon":
+         {
+            "required":"N",
+            "type":"String",
+            "description":null,
+            "displayName":"icon",
+            "parameters":null,
+            "enumeratedList":null
+         },
+         "username":
+         {
+            "required":"N",
+            "type":"String",
+            "description":null,
+            "displayName":"username",
+            "parameters":null,
+            "enumeratedList":null
+         },
+         "childId":
+         {
+            "required":"N",
+            "type":"int",
+            "description":null,
+            "displayName":"childId",
+            "parameters":null,
+            "enumeratedList":null
+         },
+         "accessToken":
+         {
+            "required":"N",
+            "type":"String",
+            "description":null,
+            "displayName":"accessToken",
+            "parameters":null,
+            "enumeratedList":null
+         },
+         "device":
+         {
+            "required":"N",
+            "type":"Enumerated",
+            "description":null,
+            "displayName":"device",
+            "parameters":null,
+            "enumeratedList":
+            [
+               "Web",
+               "Phone"
+            ]
+
+         },
+         "emailAddress":
+         {
+            "required":"N",
+            "type":"String",
+            "description":null,
+            "displayName":"emailAddress",
+            "parameters":null,
+            "enumeratedList":null
+         },
+         "eamil":
+         {
+            "required":"N",
+            "type":"String",
+            "description":null,
+            "displayName":"eamil",
+            "parameters":null,
+            "enumeratedList":null
+         },
+         "password":
+         {
+            "required":"N",
+            "type":"String",
+            "description":null,
+            "displayName":"password",
+            "parameters":null,
+            "enumeratedList":null
+         }
+
+      }
+
+   }
+
+}

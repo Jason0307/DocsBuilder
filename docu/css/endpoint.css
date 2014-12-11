@@ -1,0 +1,322 @@
+ul.methods {
+  clear: right;
+}
+a.plusDocument {
+  position: relative;
+  left: 60px;
+}
+.modal-body input {
+  display: inline;
+}
+.modal-body label {
+  padding-left: 10px;
+  display: inline;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+.mainNav li.active a {
+  background-color: #c0c0c0;
+  color: #fff;
+}
+.results li.active a {
+  background-color: #f5f5f5;
+}
+li {
+  list-style: none;
+}
+#list {
+  clear: right;
+}
+.tabbable {
+  margin: 0 20px;
+}
+.results > .nav {
+  margin: 0;
+  border: 0;
+}
+.endpoint > h4 {
+  display: inline;
+}
+.endpoint ul.actions {
+  float: right;
+}
+li.endpoint {
+  margin: 10px 0 0 0;
+  border-bottom: 1px solid #eee;
+  overflow: hidden;
+  background-color: #fff;
+}
+li.endpoint .expanded {
+  background-color: #fff;
+}
+.endpoint > span {
+  font-weight: normal;
+  margin: 0;
+  padding: 20px 0 10px 10px;
+  overflow: hidden;
+  line-height: 15px;
+}
+a,
+a.active,
+a:visited {
+  color: #607890;
+}
+.method span {
+  margin-left: 10px;
+}
+li.GET {
+  border-color: #aecce4;
+}
+.GET .http-method {
+  color: #aecce4;
+}
+.GET td,
+.GET th {
+  border-bottom: 1px solid #aecce4;
+}
+li.POST {
+  border-color: #33ad5c;
+}
+.POST .http-method {
+  color: #33ad5c;
+}
+.POST td,
+.POST th {
+  border-bottom: 1px solid #33ad5c;
+}
+li.PUT {
+  border-color: #a34719;
+}
+.PUT .http-method {
+  color: #a34719;
+}
+.PUT td,
+.PUT th {
+  border-bottom: 1px solid #a34719;
+}
+li.DELETE {
+  border-color: #cd2626;
+}
+.DELETE .http-method {
+  color: #cd2626;
+}
+.DELETE td,
+.DELETE th {
+  border-bottom: 1px solid #cd2626;
+}
+span.http-method {
+  text-align: center;
+  font-size: 14px;
+}
+.GET span.http-method {
+  background-color: #0061ac;
+  color: #fff;
+  margin: 0px;
+  padding: 10px 12px;
+  display: inline-block;
+  width: 50px;
+  font-size: 12px;
+}
+.POST span.http-method {
+  background-color: #04a73a;
+  color: #fff;
+  margin: 0px;
+  padding: 10px 12px;
+  display: inline-block;
+  width: 50px;
+  font-size: 12px;
+}
+.PUT span.http-method {
+  background-color: #b06300;
+  color: #fff;
+  margin: 0px;
+  padding: 10px 12px;
+  display: inline-block;
+  width: 50px;
+  font-size: 12px;
+}
+.DELETE span.http-method {
+  background-color: #cd2626;
+  color: #fff;
+  margin: 0px;
+  padding: 10px 12px;
+  display: inline-block;
+  width: 50px;
+  font-size: 12px;
+}
+.INVISIBLE {
+  display: none;
+}
+.method {
+  font-size: 14px;
+  border: 1px solid #eee;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin: 10px 0 0 0px;
+}
+.method .http-method {
+  width: 60px;
+  font-size: 14px;
+  text-align: center;
+  margin: 0;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.method > span {
+  margin: 0 10px 0;
+  line-height: 33px;
+}
+.method > span.uri {
+  color: #777;
+}
+.method form {
+  padding: 10px 20px;
+}
+.method form input.btn {
+  display: block;
+  margin-top: 20px;
+}
+.method form table th,
+.method form table td {
+  vertical-align: middle;
+}
+.method form table thead th.Param {
+  width: 30%;
+}
+.method form table thead th.Value {
+  width: 40%;
+}
+.method form table thead th.Type {
+  width: 10%;
+}
+.method form table thead th.Desc {
+  width: 20%;
+}
+.method form table tbody td {
+  margin: 1px 0;
+  line-height: 35px;
+  padding: 0;
+  margin: 0;
+}
+.method form table tbody td.Value input {
+  width: 90%;
+  margin: 0;
+  padding: 0 10px;
+  background-color: #fafad2;
+  height: 96%;
+}
+.method form table tbody select {
+  width: 95%;
+  height: 96%;
+  padding: 0;
+  margin: 0;
+}
+.method form table tbody td.Type a.plus {
+  float: right;
+  margin-right: 15px;
+}
+a.plusObject,
+a.plusArray,
+a.minusObject,
+a.minusArray,
+a.plusSet,
+a.minusSet,
+a.minusSingleItem {
+  float: right;
+  padding-right: 20px;
+}
+span.header {
+  margin-top: 8px;
+  display: inline;
+  position: relative;
+  height: 20px;
+  width: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  float: left;
+}
+span.open {
+  background-image: url("/img/panelOpen.png");
+}
+span.closed {
+  background-image: url("/img/panelClosed.png");
+}
+span.simpleType {
+  background-image: url("/img/bullet_white_alt.png");
+  width: 20px;
+  height: 20px;
+  margin-top: 10px;
+  display: inline-block;
+}
+p.inline {
+  display: inline;
+}
+.hidden {
+  display: none;
+}
+span.indentLevel0 {
+  margin-left: 0px;
+}
+span.indentLevel1 {
+  margin-left: 20px;
+}
+span.indentLevel2 {
+  margin-left: 40px;
+}
+span.indentLevel3 {
+  margin-left: 60px;
+}
+span.indentLevel4 {
+  margin-left: 80px;
+}
+span.indentLevel5 {
+  margin-left: 100px;
+}
+span.indentLevel6 {
+  margin-left: 120px;
+}
+span.indentLevel7 {
+  margin-left: 140px;
+}
+td.Type input.file {
+  width: 60px;
+  height: 20px;
+  z-index: 100;
+  opacity: 0;
+}
+.ui-timepicker-div .ui-widget-header {
+  margin-bottom: 8px;
+}
+.ui-timepicker-div dl {
+  text-align: left;
+}
+.ui-timepicker-div dl dt {
+  height: 25px;
+  margin-bottom: -25px;
+}
+.ui-timepicker-div dl dd {
+  margin: 0 10px 10px 65px;
+}
+.ui-timepicker-div td {
+  font-size: 90%;
+}
+.ui-tpicker-grid-label {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+.ui-timepicker-rtl {
+  direction: rtl;
+}
+.ui-timepicker-rtl dl {
+  text-align: right;
+}
+.ui-timepicker-rtl dl dd {
+  margin: 0 65px 10px 10px;
+}
