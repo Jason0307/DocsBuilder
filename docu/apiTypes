@@ -19,7 +19,8 @@
                   "uri":"/game/list",
                   "parameters":
                   [
-                     "accessToken"
+                     "accessToken",
+                     "userVo"
                   ]
 
                },
@@ -54,7 +55,7 @@
                   "parameters":
                   [
                      "username",
-                     "eamil",
+                     "email",
                      "icon"
                   ]
 
@@ -85,26 +86,8 @@
          {
             "required":"N",
             "type":"String",
-            "description":null,
+            "description":"icon",
             "displayName":"icon",
-            "parameters":null,
-            "enumeratedList":null
-         },
-         "username":
-         {
-            "required":"N",
-            "type":"String",
-            "description":null,
-            "displayName":"username",
-            "parameters":null,
-            "enumeratedList":null
-         },
-         "childId":
-         {
-            "required":"N",
-            "type":"int",
-            "description":null,
-            "displayName":"childId",
             "parameters":null,
             "enumeratedList":null
          },
@@ -112,16 +95,103 @@
          {
             "required":"N",
             "type":"String",
-            "description":null,
+            "description":"accessToken",
             "displayName":"accessToken",
+            "parameters":null,
+            "enumeratedList":null
+         },
+         "childId":
+         {
+            "required":"N",
+            "type":"int",
+            "description":"childId",
+            "displayName":"childId",
+            "parameters":null,
+            "enumeratedList":null
+         },
+         "walletType":
+         {
+            "required":"N",
+            "type":"int",
+            "description":"walletType",
+            "displayName":"walletType",
+            "parameters":null,
+            "enumeratedList":null
+         },
+         "emailAddress":
+         {
+            "required":"N",
+            "type":"String",
+            "description":"emailAddress",
+            "displayName":"emailAddress",
+            "parameters":null,
+            "enumeratedList":null
+         },
+         "userVo":
+         {
+            "required":"N",
+            "type":"object",
+            "description":"userVo",
+            "displayName":"userVo",
+            "parameters":
+            [
+               "userId",
+               "username",
+               "email",
+               "walletVo"
+            ],
+            "enumeratedList":null
+         },
+         "password":
+         {
+            "required":"N",
+            "type":"String",
+            "description":"password",
+            "displayName":"password",
+            "parameters":null,
+            "enumeratedList":null
+         },
+         "username":
+         {
+            "required":"N",
+            "type":"String",
+            "description":"username",
+            "displayName":"username",
+            "parameters":null,
+            "enumeratedList":null
+         },
+         "email":
+         {
+            "required":"N",
+            "type":"String",
+            "description":"email",
+            "displayName":"email",
+            "parameters":null,
+            "enumeratedList":null
+         },
+         "userId":
+         {
+            "required":"N",
+            "type":"int",
+            "description":"userId",
+            "displayName":"userId",
+            "parameters":null,
+            "enumeratedList":null
+         },
+         "value":
+         {
+            "required":"N",
+            "type":"int",
+            "description":"value",
+            "displayName":"value",
             "parameters":null,
             "enumeratedList":null
          },
          "device":
          {
             "required":"N",
-            "type":"Enumerated",
-            "description":null,
+            "type":"enumerated",
+            "description":"device",
             "displayName":"device",
             "parameters":null,
             "enumeratedList":
@@ -131,31 +201,17 @@
             ]
 
          },
-         "emailAddress":
+         "walletVo":
          {
             "required":"N",
-            "type":"String",
-            "description":null,
-            "displayName":"emailAddress",
-            "parameters":null,
-            "enumeratedList":null
-         },
-         "eamil":
-         {
-            "required":"N",
-            "type":"String",
-            "description":null,
-            "displayName":"eamil",
-            "parameters":null,
-            "enumeratedList":null
-         },
-         "password":
-         {
-            "required":"N",
-            "type":"String",
-            "description":null,
-            "displayName":"password",
-            "parameters":null,
+            "type":"object",
+            "description":"walletVo",
+            "displayName":"walletVo",
+            "parameters":
+            [
+               "walletType",
+               "value"
+            ],
             "enumeratedList":null
          }
 

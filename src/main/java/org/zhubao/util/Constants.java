@@ -20,5 +20,7 @@ public interface Constants {
 	public static final String BASE_URL = "/flight/dashboard/";
 	public static final String PARAM_VALUE_REQUIRED_NO = "N";
 	public static final String PARAM_VALUE_REQUIRED_YES = "Y";
-	public static final String PARAM_TYPE_ENUMERATED = "Enumerated";
+	public static final String PARAM_TYPE_ENUMERATED = "enumerated";
+	public static final String PARAM_TYPE_OBJECT = "object";
+	public static final String PARAM_TYPE_ARRAY = "array";
 }

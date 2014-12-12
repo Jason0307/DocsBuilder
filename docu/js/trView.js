@@ -78,14 +78,11 @@
 
     TrView.prototype.onRootNameChange = function(model) {
       var name;
-
-      console.log("TrView: on RootNameChange ", this.model.toJSON().displayName);
       name = "" + (this.model.toJSON().rootName) + "[" + (this.model.toJSON().displayName) + "]";
       return $(this.el).find('td.Value input').attr("name", name);
     };
 
     TrView.prototype.onModelDestroy = function(model, changes) {
-      console.log("destroy enter");
       this.undelegateEvents();
       this.remove();
       return console.log("destroy exit");
@@ -94,8 +91,7 @@
     TrView.prototype.onCollectionAdd = function(inModel, collection, index) {
       var trView, viewType;
 
-      console.log("enter on collection add ", arguments);
-      viewType = viewMap[inModel.get("Type")] || TrView;
+      viewType = viewMap[inModel.get("type")] || TrView;
       if (!inModel.has('rootName')) {
         inModel.set('rootName', this.model.get('rootName'));
       }

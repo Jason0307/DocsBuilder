@@ -6,12 +6,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.zhubao.annotation.StringSequence;
 import org.zhubao.util.JsonResponse;
+import org.zhubao.vo.UserVo;
 
 @Controller
 public class GameController {
 
 	@RequestMapping(value = "/game/list", method = RequestMethod.GET)
-	public @ResponseBody JsonResponse<Boolean> gameList(String accessToken) {
+	public @ResponseBody JsonResponse<Boolean> gameList(String accessToken,UserVo userVo) {
 		return null;
 	}
 	

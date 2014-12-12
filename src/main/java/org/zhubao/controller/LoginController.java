@@ -26,7 +26,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public JsonResponse<UserVo> register(String username, String eamil,String icon) {
+	public JsonResponse<UserVo> register(String username, String email,String icon) {
 		return new JsonResponse<UserVo>(IStatusCode.SUCCESS, new UserVo());
 	}
 }

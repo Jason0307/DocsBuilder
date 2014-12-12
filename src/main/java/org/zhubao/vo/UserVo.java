@@ -10,14 +10,14 @@ package org.zhubao.vo;
  */
 public class UserVo {
 
-	private long userId;
+	private int userId;
 	private String username;
 	private String email;
 	private WalletVo walletVo;
-	public long getUserId() {
+	public int getUserId() {
 		return userId;
 	}
-	public void setUserId(long userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 	public String getUsername() {

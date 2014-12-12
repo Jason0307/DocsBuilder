@@ -3,6 +3,7 @@ package org.zhubao.docx.entity;
 import java.io.File;
 import java.io.StringWriter;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.net.URL;
@@ -34,6 +35,8 @@ public class DocuBuilder extends AbstractBaseBuilder {
 
 	public static void main(String[] args) throws Exception {
 		DocuBuilder builder = new DocuBuilder();
+		DocuModel docuModel = builder.buildModel("org.zhubao.controller");
+		System.out.println(objectMapper.writeValueAsString(docuModel));
 		builder.build();
 	}
 
@@ -58,11 +61,11 @@ public class DocuBuilder extends AbstractBaseBuilder {
 				config.setProtocol(docusign.getProtocol());
 			}
 		}
-		
+
 		return config;
 	}
 
-	protected void outputTypes(DocuModel docuModel) throws Exception{
+	protected void outputTypes(DocuModel docuModel) throws Exception {
 		String result = objectMapper.writeValueAsString(docuModel);
 		result = FormatUtil.formatJson(result);
 		writeStringToFile(result, outputDir, "/apiTypes");
@@ -86,9 +89,9 @@ public class DocuBuilder extends AbstractBaseBuilder {
 	}
 
 	protected void outputDoc(String fileName,
-			Map<String, List<EndpointMethod>> docuGroup,ServerConfig config) throws Exception {
+			Map<String, List<EndpointMethod>> docuGroup, ServerConfig config)
+			throws Exception {
 		Map<String, Object> context = new HashMap<String, Object>();
-		System.out.println("docuGroup : " + docuGroup);
 		context.put("config", config);
 		context.put("docuGroup", docuGroup);
 		StringWriter writer = new StringWriter();
@@ -133,7 +136,8 @@ public class DocuBuilder extends AbstractBaseBuilder {
 						endpointMethod.setHttpMethod(reqMapping.method()[0]
 								.name());
 						endpointMethod.setUri(baseReqMapping
-								+ reqMapping.value()[0].replaceAll("[{]", ":").replaceAll("[}]", ""));
+								+ reqMapping.value()[0].replaceAll("[{]", ":")
+										.replaceAll("[}]", ""));
 						endpointMethod.setProtocol(Constants.PROTOCOL_HTTP);
 						break;
 					}
@@ -150,36 +154,42 @@ public class DocuBuilder extends AbstractBaseBuilder {
 					Class<?> pmClass = pmClasses[i];
 					String pmName = pmNames[i];
 					if (pmClass != HttpServletRequest.class) {
-						String paramSimpleClass = pmClass.getSimpleName();
+						String paramSimpleName = pmClass.getSimpleName();
 						ParamType paramType = new ParamType();
 						paramType.setDisplayName(pmName);
-						paramType.setType(paramSimpleClass);
-						paramType
-								.setRequired(Constants.PARAM_VALUE_REQUIRED_NO);
-						// get the param annotation
-						Annotation[] annotations = pAnnotations[i];
-						for (Annotation annotation : annotations) {
-							if (annotation instanceof IntegerSequence) {
-								paramType
-										.setType(Constants.PARAM_TYPE_ENUMERATED);
-								List<String> enumeratedList = new ArrayList<String>();
-								IntegerSequence integerSequence = (IntegerSequence) annotation;
-								IntegerType[] types = integerSequence.value();
-								for (IntegerType type : types) {
-									enumeratedList.add(type.name());
+						paramType.setDescription(pmName);
+						paramType.setType(paramSimpleName);
+						paramType.setRequired(Constants.PARAM_VALUE_REQUIRED_NO);
+						if (paramSimpleName.contains("Vo")) {
+							paramType.setType(Constants.PARAM_TYPE_OBJECT);
+							parseParamTypes(paramType,pmClass,paramTypes);
+						} else {
+							// get the param annotation
+							Annotation[] annotations = pAnnotations[i];
+							for (Annotation annotation : annotations) {
+								if (annotation instanceof IntegerSequence) {
+									paramType
+											.setType(Constants.PARAM_TYPE_ENUMERATED);
+									List<String> enumeratedList = new ArrayList<String>();
+									IntegerSequence integerSequence = (IntegerSequence) annotation;
+									IntegerType[] types = integerSequence
+											.value();
+									for (IntegerType type : types) {
+										enumeratedList.add(type.name());
+									}
+									paramType.setEnumeratedList(enumeratedList);
 								}
-								paramType.setEnumeratedList(enumeratedList);
-							}
-							if (annotation instanceof StringSequence) {
-								paramType
-										.setType(Constants.PARAM_TYPE_ENUMERATED);
-								List<String> enumeratedList = new ArrayList<String>();
-								StringSequence stringSequence = (StringSequence) annotation;
-								StringType[] types = stringSequence.value();
-								for (StringType stringType : types) {
-									enumeratedList.add(stringType.name());
+								if (annotation instanceof StringSequence) {
+									paramType
+											.setType(Constants.PARAM_TYPE_ENUMERATED);
+									List<String> enumeratedList = new ArrayList<String>();
+									StringSequence stringSequence = (StringSequence) annotation;
+									StringType[] types = stringSequence.value();
+									for (StringType stringType : types) {
+										enumeratedList.add(stringType.name());
+									}
+									paramType.setEnumeratedList(enumeratedList);
 								}
-								paramType.setEnumeratedList(enumeratedList);
 							}
 						}
 
@@ -197,6 +207,29 @@ public class DocuBuilder extends AbstractBaseBuilder {
 			docuModel.setDocusign(docusign);
 		}
 		return docuModel;
+	}
+
+	private void parseParamTypes(ParamType paramType, Class<?> pmClass,Map<String, ParamType> paramTypes) {
+		Field[] paramFields = pmClass.getDeclaredFields();
+		List<String> pMeters = new ArrayList<String>();
+		for(Field field : paramFields){
+			String pName = field.getName();
+			pMeters.add(pName);
+			Class<?> fieldType = field.getType();
+			ParamType  fieldParamType = new ParamType();
+			fieldParamType.setDisplayName(pName);
+			fieldParamType.setDescription(pName);
+			fieldParamType.setRequired(Constants.PARAM_VALUE_REQUIRED_NO);
+			fieldParamType.setType(fieldType.getSimpleName());
+			if(pName.contains("Vo")){
+				fieldParamType.setType(Constants.PARAM_TYPE_OBJECT);
+				parseParamTypes(fieldParamType,fieldType,paramTypes);
+			}else{
+				paramTypes.put(pName, fieldParamType);
+			}
+		}
+		paramType.setParameters(pMeters);
+		paramTypes.put(paramType.getDisplayName(), paramType);
 	}
 
 	protected String parseEndPointName(String clazzName) {

@@ -11,5 +11,11 @@ public class DocuModel {
 	public void setDocusign(Docusign docusign) {
 		this.docusign = docusign;
 	}
+
+	@Override
+	public String toString() {
+		return "DocuModel [docusign=" + docusign + "]";
+	}
+	
 	
 }

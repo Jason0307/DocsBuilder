@@ -47,6 +47,9 @@ public class Docusign {
 	public void setTypes(Map<String,ParamType> types) {
 		this.types = types;
 	}
-	
+	@Override
+	public String toString() {
+		return "Docusign [types=" + types + "]";
+	}
 	
 }

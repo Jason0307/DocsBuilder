@@ -10,7 +10,6 @@
   Handlebars.registerHelper('listObjectItems', function(items) {
     return _.map(items, function(item) {
       var renderMe;
-
       renderMe = '';
       if (item.bFound) {
         renderMe = Handlebars.templates["tmplObjectSelectItemEnable.html"](item);
@@ -273,7 +272,6 @@
       that = this;
       postFix = ($(this.el).attr('id')) + 'Method' + index;
       inModel.set('name', postFix);
-      console.log(inModel, index);
       return this.options.factory.createView(MethodView, {
         model: inModel,
         el: '#' + postFix
@@ -372,7 +370,6 @@
     };
 
     MethodView.prototype.methodCollapsed = function() {
-      console.log("set Expand false");
       if (true === this.model.get("expand")) {
         return this.model.set("expand", false);
       }
@@ -387,7 +384,6 @@
     };
 
     MethodView.prototype.changeExpand = function(model, changeValue, eventSummary) {
-      console.log("model change Expand triggered", this.el);
       if (changeValue === true) {
         return $(this.el).find('form, .results').slideDown();
       } else {
@@ -419,7 +415,6 @@
     MethodView.prototype.tryItResponse = function(inReturnObj) {
       var data;
 
-      console.log('tryItResponse ', this.options);
       if (this.responseView == null) {
         data = new Backbone.Model(inReturnObj);
         data.set("parentId", this.$el.selector.substr(1));
@@ -478,7 +473,7 @@
 
       that = this;
       viewType = null;
-      viewType = viewMap[inModel.get("Type")] || TrView;
+      viewType = viewMap[inModel.get("type")] || TrView;
       inModel.set("rootName", "param");
       trView = this.options.factory.createView(viewType, {
         model: inModel

@@ -132,6 +132,7 @@ $.fn.ajaxSubmit = function(options,callback) {
     }
 
     var q = $.param(a, traditional);
+    console.log(q);
     if (qx) {
         q = ( q ? (q + '&' + qx) : qx );
     }    

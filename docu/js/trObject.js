@@ -23,11 +23,7 @@
 
     TrObject.prototype.addObjectClk = function(jqEv) {
       var bFound, param, renderMe, _i, _len, _ref1;
-
-      console.log("enter addObjectClk");
-       console.log(this);
       $('#myModal .modal-body').children().remove();
-      console.log(this.model.toJSON());
       _ref1 = this.model.toJSON().parameters;
       for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
         param = _ref1[_i];
@@ -38,7 +34,6 @@
             "true": false
           };
         });
-        console.log(bFound);
         if (bFound) {
           renderMe = Handlebars.templates["tmplObjectSelectItemDisable.html"]({
             param: param
@@ -56,7 +51,6 @@
         backdrop: true,
         show: true
       });
-      console.log("exist addObjectClk");
       return this;
     };
 
@@ -84,7 +78,14 @@
             if (!obj.has('displayName')) {
               obj.set('displayName', param);
             }
-            obj.set('rootName', "" + (this.model.get('rootName')) + "[" + (this.model.get('displayName')) + "]");
+            var rootName = this.model.get('rootName');
+            if(rootName === "param"){
+            	rootName = "";
+            }else{
+            	rootName += ".";
+            }
+            
+            obj.set('rootName', "" + (rootName + (this.model.get('displayName'))));
             if (this.model.toJSON().indent != null) {
               _results.push(obj.set('indent', this.model.toJSON().indent + 1));
             } else {
@@ -102,7 +103,6 @@
       $('#myModal .modal-body').children().remove().end();
       $('#myModal').modal('hide');
       this.model.attributes.collection.add(myModels);
-      console.log(myModels);
       return this;
     };
 
