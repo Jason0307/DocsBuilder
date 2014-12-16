@@ -2,9 +2,14 @@
 <#list apiObjectGroup?keys as groupName>
 <#if apiObjectGroup[groupName]?size gt 0>
 ## ${groupName}
+<ul>
+<#list apiObjectGroup[groupName] as apiObject>
+    <li> <a href="#${apiObject.name}"><strong>${apiObject.name}</strong></a></li>
+</#list>
+</ul>
 <#list apiObjectGroup[groupName] as apiObject>
 <#assign count=count+1>
-#### (${count}) ${apiObject.name}
+<h4 id="${apiObject.name}">(${count}) ${apiObject.name}</h4>
 **URL:**
 `${apiObject.requestUrl}`
 
