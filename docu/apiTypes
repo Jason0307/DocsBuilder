@@ -20,7 +20,21 @@
                   "parameters":
                   [
                      "accessToken",
-                     "userVo"
+                     "userVo",
+                     "itemVo"
+                  ]
+
+               },
+               {
+                  "methodName":"test",
+                  "synopsis":null,
+                  "httpMethod":"POST",
+                  "protocol":"http",
+                  "uri":"/account/test",
+                  "parameters":
+                  [
+                     "accessToken",
+                     "vo"
                   ]
 
                },
@@ -91,13 +105,29 @@
             "parameters":null,
             "enumeratedList":null
          },
-         "accessToken":
+         "itemName":
          {
             "required":"N",
             "type":"String",
-            "description":"accessToken",
-            "displayName":"accessToken",
+            "description":"itemName",
+            "displayName":"itemName",
             "parameters":null,
+            "enumeratedList":null
+         },
+         "childVo":
+         {
+            "required":"N",
+            "type":"object",
+            "description":"childVo",
+            "displayName":"childVo",
+            "parameters":
+            [
+               "name",
+               "userId",
+               "age",
+               "gender",
+               "icon"
+            ],
             "enumeratedList":null
          },
          "childId":
@@ -106,6 +136,15 @@
             "type":"int",
             "description":"childId",
             "displayName":"childId",
+            "parameters":null,
+            "enumeratedList":null
+         },
+         "accessToken":
+         {
+            "required":"N",
+            "type":"String",
+            "description":"accessToken",
+            "displayName":"accessToken",
             "parameters":null,
             "enumeratedList":null
          },
@@ -127,6 +166,19 @@
             "parameters":null,
             "enumeratedList":null
          },
+         "itemVo":
+         {
+            "required":"N",
+            "type":"object",
+            "description":"itemVo",
+            "displayName":"itemVo",
+            "parameters":
+            [
+               "itemId",
+               "itemName"
+            ],
+            "enumeratedList":null
+         },
          "userVo":
          {
             "required":"N",
@@ -142,6 +194,15 @@
             ],
             "enumeratedList":null
          },
+         "itemId":
+         {
+            "required":"N",
+            "type":"int",
+            "description":"itemId",
+            "displayName":"itemId",
+            "parameters":null,
+            "enumeratedList":null
+         },
          "password":
          {
             "required":"N",
@@ -149,6 +210,21 @@
             "description":"password",
             "displayName":"password",
             "parameters":null,
+            "enumeratedList":null
+         },
+         "vo":
+         {
+            "required":"N",
+            "type":"object",
+            "description":"vo",
+            "displayName":"vo",
+            "parameters":
+            [
+               "email",
+               "name",
+               "password",
+               "childVo"
+            ],
             "enumeratedList":null
          },
          "username":
@@ -169,21 +245,30 @@
             "parameters":null,
             "enumeratedList":null
          },
-         "userId":
+         "age":
          {
             "required":"N",
             "type":"int",
+            "description":"age",
+            "displayName":"age",
+            "parameters":null,
+            "enumeratedList":null
+         },
+         "userId":
+         {
+            "required":"N",
+            "type":"long",
             "description":"userId",
             "displayName":"userId",
             "parameters":null,
             "enumeratedList":null
          },
-         "value":
+         "name":
          {
             "required":"N",
-            "type":"int",
-            "description":"value",
-            "displayName":"value",
+            "type":"String",
+            "description":"name",
+            "displayName":"name",
             "parameters":null,
             "enumeratedList":null
          },
@@ -200,6 +285,24 @@
                "Phone"
             ]
 
+         },
+         "value":
+         {
+            "required":"N",
+            "type":"int",
+            "description":"value",
+            "displayName":"value",
+            "parameters":null,
+            "enumeratedList":null
+         },
+         "gender":
+         {
+            "required":"N",
+            "type":"int",
+            "description":"gender",
+            "displayName":"gender",
+            "parameters":null,
+            "enumeratedList":null
          },
          "walletVo":
          {

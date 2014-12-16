@@ -131,8 +131,32 @@ $.fn.ajaxSubmit = function(options,callback) {
         return this;
     }
 
-    var q = $.param(a, traditional);
-    console.log(q);
+    var q = $.param(a, traditional),result = {};
+    var paramsA = q.split("&"),params = new Array(),transforData = "";
+    for(var i = 0 ; i < paramsA.length; i++){
+    	var param = paramsA[i],index = param.indexOf("."),eqIndex = param.indexOf("=");
+    	if(index > 0 && index < eqIndex){
+    		getJsonStr(param,result);
+    	}else{
+    		params.push(param);
+    	}
+    }
+    
+    for(var i = 0 ; i < params.length; i++){
+    	transforData += params[i];
+    	if(i < params.length - 1){
+    		transforData += "&";
+    	}
+    }
+    
+    for(var key in result){
+    	transforData += ("&" + (key + "=" + JSON.stringify(result[key])));
+    }
+    
+    console.log(transforData);
+    q = transforData;
+    
+    
     if (qx) {
         q = ( q ? (q + '&' + qx) : qx );
     }    
@@ -735,6 +759,22 @@ $.fn.ajaxForm = function(options) {
         .bind('submit.form-plugin', options, doAjaxSubmit)
         .bind('click.form-plugin', options, captureSubmittingElement);
 };
+
+
+function getJsonStr(param,result){
+	var index = param.indexOf("."),firstA = param.substring(0,index),lastA = param.substring(index + 1,param.length);
+	if(!result[firstA]){
+		result[firstA] = {};
+	}
+	var lastAIndex = lastA.indexOf("."),lastAEqIndex = lastA.indexOf("=");
+	if(lastAIndex > 0 && lastAIndex < lastAEqIndex){
+		getJsonStr(lastA,result[firstA]);
+	}else{
+		var attrs = lastA.split("=");
+		result[firstA][attrs[0]] = attrs[1];
+	}
+	return result;
+}
 
 // private event handlers    
 function doAjaxSubmit(e) {

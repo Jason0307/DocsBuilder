@@ -1110,8 +1110,6 @@
 			} else {
 				stack1 = depth0.rootName;
 				stack1 = typeof stack1 === functionType ? stack1() : (stack1 === "param" ? "" : stack1 + ".");
-				console.log(depth0);
-				console.log(stack1);
 			}
 			buffer += escapeExpression(stack1);
 			foundHelper = helpers.displayName;

@@ -76,13 +76,13 @@
 								<div id="tabEndpoint0Method0ResultsCall" class="results">
 							</div>
 						</li>
-						 <li id="tabEndpoint0Method1" class="method GET">
+						 <li id="tabEndpoint0Method1" class="method POST">
 							<div class="title">
-								<span class="http-method">GET</span>
-								<span class="name">progressDetail</span>
-								<span class="uri">/:accessToken/progress/detail</span>
+								<span class="http-method">POST</span>
+								<span class="name">test</span>
+								<span class="uri">/account/test</span>
 							</div>
-							<form method="GET" enctype="" action="/flight/dashboard/v3/:accessToken/progress/detail" style="display: block;">
+							<form method="POST" enctype="" action="/flight/dashboard/v3/account/test" style="display: block;">
 								<span class="description"></span>
 								<table id="tabEndpoint0Method1Table" class="table table-hover">
 									<thead>
@@ -99,6 +99,31 @@
 								</table>
 								<input type="submit" value="Try It!" class="btn"></form>
 								<div id="tabEndpoint0Method1ResultsCall" class="results">
+							</div>
+						</li>
+						 <li id="tabEndpoint0Method2" class="method GET">
+							<div class="title">
+								<span class="http-method">GET</span>
+								<span class="name">progressDetail</span>
+								<span class="uri">/:accessToken/progress/detail</span>
+							</div>
+							<form method="GET" enctype="" action="/flight/dashboard/v3/:accessToken/progress/detail" style="display: block;">
+								<span class="description"></span>
+								<table id="tabEndpoint0Method2Table" class="table table-hover">
+									<thead>
+										<tr>
+											<th class="Param">Parameter</th>
+											<th class="Value">Value</th>
+											<th class="Type">Type</th>
+											<th class="Desc">Description</th>
+										</tr>
+									</thead>
+									<tbody>
+										
+									</tbody>
+								</table>
+								<input type="submit" value="Try It!" class="btn"></form>
+								<div id="tabEndpoint0Method2ResultsCall" class="results">
 							</div>
 						</li>
 						</ul>
@@ -188,17 +213,6 @@
 	<script src="js/trSet.js"></script>
 	<script src="js/trSingleDocumentSimple.js"></script>
 	<script src="js/app.js"></script>
-	<script type="text/javascript">
-		window.onload = function(){
-			var str = "param[accessToken]=2&param[userVo][walletVo][value]=123&param[userVo][walletVo][walletType]=1&param[userVo][email]=jason@qq.com&param[userVo][username]=owen&param[userVo][userId]=12";
-			var arr = new Array();
-			arr = str.split("&");
-			for(var i = 0 ; i < arr.length; i++){
-				var data = arr[i];
-				
-			}
-		}
-	
-	</script>
+	<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
 </body>
 </html>

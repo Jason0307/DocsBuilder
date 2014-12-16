@@ -40,6 +40,7 @@
         "array": "tmplArrayType.html",
         "string": "tmplStringType.html",
         "int": "tmplStringType.html",
+        "long": "tmplStringType.html",
         "enumerated": "tmplEnumeratedType.html",
         "singlefile": "tmplDocuments.html",
         "image": "tmplDocuments.html",
