@@ -1,0 +1,23 @@
+ 
+<html> 
+<head> 
+
+<head> 
+<body> 
+ <input id="testFileInput" type="file" name="pic" 
+		       uploaderOption="{
+					swf:'../dwz/uploadify/scripts/uploadify.swf',
+					uploader:'/upload',
+					formData:{PHPSESSID:'xxx', ajax:1},
+					buttonText:'请选择文件',
+					fileSizeLimit:'200KB',
+					fileTypeDesc:'*.jpg;*.jpeg;*.gif;*.png;',
+					fileTypeExts:'*.jpg;*.jpeg;*.gif;*.png;',
+					auto:true,
+					multi:true,
+					onQueueComplete:uploadifyQueueComplete
+		         }"
+	/>
+
+</body> 
+<html> 

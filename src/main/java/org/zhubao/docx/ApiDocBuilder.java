@@ -49,7 +49,7 @@ import sun.reflect.generics.reflectiveObjects.GenericArrayTypeImpl;
 public class ApiDocBuilder extends AbstractBaseBuilder {
 	ObjectMapper objectMapper = new ObjectMapper();
 	ParameterNameDiscoverer nameDiscoverer = new LocalVariableTableParameterNameDiscoverer();
-	static int GENERATE_TYPE = Constants.GENERATE_MARKDOWN;
+	static int GENERATE_TYPE = Constants.GENERATE_HTML;
 
 	public static void main(String[] args) throws Exception {
 		ApiDocBuilder apiDocBuilder = new ApiDocBuilder();
@@ -71,7 +71,7 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 				parseControllerClass(clazz, apiObjectGroup);
 			}
 			if (Constants.GENERATE_MARKDOWN == GENERATE_TYPE) {
-				String fileName = "/api" + i + ".md";
+				String fileName = "/api" + i + ".html";
 				outputDoc(fileName, apiObjectGroup);
 				renderHtml(fileName);
 			} else {
@@ -93,10 +93,10 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 		String templateFile = "";
 		switch (generateType) {
 		case Constants.GENERATE_HTML:
-			templateFile = "/org/zhubao/docx/template/api_html.ftl";
+			templateFile = "/org/zhubao/docx/template/api_html_v2.ftl";
 			break;
 		case Constants.GENERATE_MARKDOWN:
-			templateFile = "/org/zhubao/docx/template/api_markdown.ftl";
+			templateFile = "/org/zhubao/docx/template/api_markdown_v2.ftl";
 			break;
 		default:
 			break;

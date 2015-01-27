@@ -1,0 +1,99 @@
+<html>
+  <body>
+    <!-- <div class="container">
+        <h1>Camera API</h1>
+        <section class="main-content">
+      
+            <form method="post" enctype="multipart/form-data" action="index.php">
+                <input type="file" id="take-picture" name="image" accept="image/*">
+                <input type="hidden" name="action" value="submit">
+                <input type="submit" >
+            </form>
+    
+    
+            <h2>Preview:</h2>
+            <div style="width:100%;max-width:320px;">
+                <img src="about:blank" alt="" id="show-picture" width="100%">
+            </div>
+    
+            <p id="error"></p>   
+        </section>
+    </div>
+    <div id="forAppend" class="demo"></div> -->
+<div id="forAppend" class="demo"></div>
+<script>
+    var eleAppend = document.getElementById("forAppend");
+    window.URL = window.URL || window.webkitURL;
+    if (typeof history.pushState == "function") {
+        var xhr = new XMLHttpRequest();    
+        xhr.open("get", "/e1824485-c924-45e7-9d2d-d5e2a3ecf8a6.jpg", true);
+        xhr.responseType = "blob";
+        xhr.onload = function() {
+            if (this.status == 200) {
+                var blob = this.response;
+                console.log(blob);
+                var img = document.createElement("img");
+                img.onload = function(e) {
+                  //window.URL.revokeObjectURL(img.src); // 清除释放
+                };
+
+                blob.slice(10, 15, "image/jpeg"); 
+                img.src = window.URL.createObjectURL(blob);
+                eleAppend.appendChild(img);    
+            }
+        }
+        xhr.send();
+    } else {
+        eleAppend.innerHTML = '<p style="color:#cd0000;">浏览器不给力，还是早点回去给孩子喂奶吧~</p>';    
+    } 
+
+   /* (function () {
+            var takePicture = document.querySelector("#take-picture"),
+                showPicture = document.querySelector("#show-picture");
+
+            if (takePicture && showPicture) {
+                // Set events
+                takePicture.onchange = function (event) {
+                    // Get a reference to the taken picture or chosen file
+                    var files = event.target.files,
+                        file;
+                    if (files && files.length > 0) {
+                        file = files[0];
+                        try {
+                            // Get window.URL object
+                            var URL = window.URL || window.webkitURL;
+                            // Create ObjectURL
+                            
+                            var imgURL = URL.createObjectURL(file,true);
+                            // Set img src to ObjectURL
+                            showPicture.src = imgURL;
+
+                            // Revoke ObjectURL
+                            //URL.revokeObjectURL(imgURL);
+                        }
+                        catch (e) {
+                            try {
+                                // Fallback if createObjectURL is not supported
+                                console.log("error");
+                                var fileReader = new FileReader();
+                                fileReader.onload = function (event) {
+                                    showPicture.src = event.target.result;
+
+                                };
+                                fileReader.readAsDataURL(file);
+                            }
+                            catch (e) {
+                                // Display error message
+                                var error = document.querySelector("#error");
+                                if (error) {
+                                    error.innerHTML = "Neither createObjectURL or FileReader are supported";
+                                }
+                            }
+                        }
+                    }
+                };
+            }
+        })();*/
+    </script>
+  </body>
+</html>
