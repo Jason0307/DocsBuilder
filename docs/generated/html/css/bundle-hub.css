@@ -9708,10 +9708,11 @@ ul.links li a {
 }
 .page-docs .sidebar-nav h4 a {
   color: #000;
-  cursor: default;
-  pointer-events: none;
+  cursor: poniter;
   font-size: 15px;
   font-weight: bold;
+ /*  background: #086244; */
+}
 }
 .page-docs .sidebar-nav h4 a:hover {
   color: #aaa;

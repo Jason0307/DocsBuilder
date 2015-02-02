@@ -26,4 +26,29 @@ jQuery(function(){
 			is_scrolling = false;
 		});
 	});
+
+	$(".tab-nav li").on("mouseover",function(){
+		$(this).removeClass("nav_link").addClass("nav_current");
+		var j,id,e,$lis = $(".tab-nav li").length;
+		for(var i = 1;i<= $lis;i++){ 
+		   id ="nav" + i;
+		   j = $("#" + id);
+		   e = $("#sub" + i);
+		   if(id != $(this).attr("id")){
+		   	 j.removeClass("nav_current").addClass("nav_link");
+		   	 e.css("display","none");
+		   }else{
+			 e.css("display","block");
+		   }
+	    }
+	})
+	
+	window.onscroll = function(){ 
+		var top = document.documentElement.scrollTop || document.body.scrollTop; 
+		if(top <= 88){
+			$("#sidebar").css("top", 88 - top + "px"); 
+		}else{
+			$("#sidebar").css("top", "0px"); 
+		}
+	}
 })

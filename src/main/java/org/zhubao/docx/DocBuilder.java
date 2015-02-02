@@ -9,7 +9,8 @@ public class DocBuilder {
 
 		ApiDocBuilder apiDocBuilder = new ApiDocBuilder();
 		apiDocBuilder.setOutputDir(outputDir);
-		apiDocBuilder.build(controllerPackage);
+		String[] apiContainer = new String[]{"Rest"};
+		apiDocBuilder.build(apiContainer,controllerPackage);
 		
 		ErrorCodeDocBuilder errorCodeDocBuilder = new ErrorCodeDocBuilder();
 		errorCodeDocBuilder.setOutputDir(outputDir);

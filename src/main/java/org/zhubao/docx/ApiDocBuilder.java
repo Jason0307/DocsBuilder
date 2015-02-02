@@ -53,17 +53,19 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 
 	public static void main(String[] args) throws Exception {
 		ApiDocBuilder apiDocBuilder = new ApiDocBuilder();
-		apiDocBuilder.build("org.zhubao.controller");
+		String[] apiContainer = new String[]{"Rest"};
+		apiDocBuilder.build(apiContainer,"org.zhubao.controller");
 	}
 
-	public void build(String controllerPackages) throws Exception {
+	public void build(String[] apiContainer,String controllerPackages) throws Exception {
 		String templateFile = getTemplateFileByGernerateType(GENERATE_TYPE);
 		initTemplate(templateFile);
 		String[] packages = controllerPackages.split(",");
 		outputDir = outputDir
 				+ ((Constants.GENERATE_MARKDOWN == GENERATE_TYPE) ? "/markdown"
 						: "/html/report");
-		int i = 1;
+		int i = 0;
+		Map<String,Map<String, Vector<ApiObject>>> docModle= new HashMap<String,Map<String, Vector<ApiObject>>>();
 		for (String packageName : packages) {
 			Map<String, Vector<ApiObject>> apiObjectGroup = new HashMap<String, Vector<ApiObject>>();
 			Collection<Class<?>> classes = getControllerClasses(packageName);
@@ -72,15 +74,18 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 			}
 			if (Constants.GENERATE_MARKDOWN == GENERATE_TYPE) {
 				String fileName = "/api" + i + ".html";
-				outputDoc(fileName, apiObjectGroup);
+				//outputDoc(fileName, apiObjectGroup);
 				renderHtml(fileName);
-			} else {
+			} /*else {
 				String fileName = "/api" + i + ".html";
 				outputDoc(fileName, apiObjectGroup);
-			}
+			}*/
+			docModle.put(apiContainer[i], apiObjectGroup);
 			i++;
 		}
 
+		String fileName = "/api" + i + ".html";
+		outputDoc(fileName, docModle);
 	}
 
 	/**
@@ -250,13 +255,12 @@ public class ApiDocBuilder extends AbstractBaseBuilder {
 	}
 
 	private void outputDoc(String fileName,
-			Map<String, Vector<ApiObject>> apiObjectGroup) throws Exception {
+			Map<String,Map<String, Vector<ApiObject>>> docModel) throws Exception {
 		Map<String, Object> context = new HashMap<String, Object>();
 
-		System.out.println("apiObjectGroup : " + apiObjectGroup);
 		context.put("builderUtil", new BuilderUtil());
 		context.put("formatUtil", new FormatUtil());
-		context.put("apiObjectGroup", apiObjectGroup);
+		context.put("docsModel", docModel);
 
 		StringWriter writer = new StringWriter();
 		template.process(context, writer);

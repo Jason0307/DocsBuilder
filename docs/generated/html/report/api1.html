@@ -5,7 +5,7 @@
 <link href="../css/github-markdown.css" type="text/css" rel="stylesheet"></link>
 <link href="../css/bundle-hub.css" type="text/css" rel="stylesheet"></link>
 <link href="../css/main.css" type="text/css" rel="stylesheet"></link>
-
+<link href="../css/tab.css" type="text/css" rel="stylesheet"></link>
 </head>
 <body class="layout page-docs body-threes theme-solid header-solid header-bg-size-auto header-bg-pos-tl header-overlay-triangles lumosity-normal undefined  os-windows">
 <div class="wrapper">
@@ -35,74 +35,88 @@
 				<div class="main-head">
 					<div id="sidebar">
 						<div id="sticky0-sticky-wrapper" class="sticky-wrapper">
-							<div sticky="0" class="sidebar-nav" id="sticky0" style="width: 300px;">
+							<div sticky="0" class="sidebar-nav" id="sticky0" style="width: 200px;">
 								<div class="sidebar-inside">
-																	<div class="sidebar-category">
-										<h4>
-											<a href="" data-sidebar="orders-1">
-												Game
-											</a>
-										</h4>
-										<ul>
-											<li>
-												<a href="#" data-sidebar="test" class="sidebar-link">
-													<span title="post" class="pg-type type-post">POST</span>
-													<span>/account/test</span>
-												</a>
-											</li>
-											<li>
-												<a href="#" data-sidebar="gameList" class="sidebar-link">
-													<span title="post" class="pg-type type-get">GET</span>
-													<span>/game/list</span>
-												</a>
-											</li>
-											<li>
-												<a href="#" data-sidebar="progressDetail" class="sidebar-link">
-													<span title="post" class="pg-type type-get">GET</span>
-													<span>/{accessToken}/progress/detail</span>
-												</a>
-											</li>
-										</ul>
+								
+									<div id="dww-menu" class="mod-tab">
+										<div class="mod-hd">
+											<ul class="tab-nav">
+																							<li class="nav_current" id="nav1">Rest</li>
+											</ul>
+										</div>
+										<div class="mod-bd">
+											<div class="dis" id="sub1">
+														<div class="sidebar-category">
+															<h4>
+																<a href="" data-sidebar="orders-1">
+																	<div class="fa fa-caret-right fa-right"></div>
+																	Game
+																</a>
+															</h4>
+															<ul>
+																<li>
+																	<a href="#" data-sidebar="test" class="sidebar-link">
+																		<span title="post" class="pg-type type-post">POST</span>
+																		<span>test</span>
+																	</a>
+																</li>
+																<li>
+																	<a href="#" data-sidebar="gameList" class="sidebar-link">
+																		<span title="post" class="pg-type type-get">GET</span>
+																		<span>gameList</span>
+																	</a>
+																</li>
+																<li>
+																	<a href="#" data-sidebar="progressDetail" class="sidebar-link">
+																		<span title="post" class="pg-type type-get">GET</span>
+																		<span>progressDetail</span>
+																	</a>
+																</li>
+															</ul>
+														</div>
+														<div class="sidebar-category">
+															<h4>
+																<a href="" data-sidebar="orders-1">
+																	<div class="fa fa-caret-right fa-right"></div>
+																	Login
+																</a>
+															</h4>
+															<ul>
+																<li>
+																	<a href="#" data-sidebar="register" class="sidebar-link">
+																		<span title="post" class="pg-type type-post">POST</span>
+																		<span>register</span>
+																	</a>
+																</li>
+																<li>
+																	<a href="#" data-sidebar="login" class="sidebar-link">
+																		<span title="post" class="pg-type type-post">POST</span>
+																		<span>login</span>
+																	</a>
+																</li>
+															</ul>
+														</div>
+											<div class="sidebar-category">
+															<h4>
+																<a href="http://twitter.com/orderapi" data-sidebar="twitter-orderapi">
+																	<div class="fa fa-caret-right fa-right"></div>
+																	More
+																</a>
+															</h4>
+															<ul>
+																<li>
+																	<a href="https://gamecloudstudios.com" data-sidebar="twitter-orderapi" target="_self" class="sidebar-link">
+																		<span>GameCloudStudios</span>
+																		<div class="fa fa-external-link-square external"></div>
+																	</a>
+																</li>
+																
+															</ul>
+														</div>
+											</div>
+										</div>
 									</div>
-									<div class="sidebar-category">
-										<h4>
-											<a href="" data-sidebar="orders-1">
-												<div class="fa fa-caret-right fa-right"></div>
-												Login
-											</a>
-										</h4>
-										<ul>
-											<li>
-												<a href="#" data-sidebar="register" class="sidebar-link">
-													<span title="post" class="pg-type type-post">POST</span>
-													<span>/register</span>
-												</a>
-											</li>
-											<li>
-												<a href="#" data-sidebar="login" class="sidebar-link">
-													<span title="post" class="pg-type type-post">POST</span>
-													<span>/user/login</span>
-												</a>
-											</li>
-										</ul>
-									</div>
-									<div class="sidebar-category">
-										<h4>
-											<a href="http://twitter.com/orderapi" data-sidebar="twitter-orderapi">
-												<div class="fa fa-caret-right fa-right"></div>
-												More
-											</a>
-										</h4>
-										<ul>
-											<li>
-												<a href="http://twitter.com/orderapi" data-sidebar="twitter-orderapi" target="_self" class="sidebar-link">
-													<span>GameCloudStudios</span>
-													<div class="fa fa-external-link-square external"></div>
-												</a>
-											</li>
-											
-										</ul>
-									</div>
+								
 								</div>
 							</div>
 						</div>
@@ -471,8 +485,8 @@
 					</div>
 				</div>
 			</div>
-		</div>
 	</div>
+</div>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script src="../js/urchin.js" type="text/javascript"></script>
 <script src="../js/format.js" type="text/javascript"></script>

@@ -5,6 +5,7 @@
 <link href="../css/github-markdown.css" type="text/css" rel="stylesheet"></link>
 <link href="../css/bundle-hub.css" type="text/css" rel="stylesheet"></link>
 <link href="../css/main.css" type="text/css" rel="stylesheet"></link>
+<link href="../css/tab.css" type="text/css" rel="stylesheet"></link>
 </head>
 <body class="layout page-docs body-threes theme-solid header-solid header-bg-size-auto header-bg-pos-tl header-overlay-triangles lumosity-normal undefined  os-windows">
 <div class="wrapper">
@@ -36,54 +37,86 @@
 						<div id="sticky0-sticky-wrapper" class="sticky-wrapper">
 							<div sticky="0" class="sidebar-nav" id="sticky0" style="width: 200px;">
 								<div class="sidebar-inside">
-								<#list apiObjectGroup?keys as groupName>
-									<#if apiObjectGroup[groupName]?size gt 0>
-									<div class="sidebar-category">
-										<h4>
-											<a href="" data-sidebar="orders-1">
-												<div class="fa fa-caret-right fa-right"></div>
-												${groupName}
-											</a>
-										</h4>
-										<ul>
-											<#list apiObjectGroup[groupName] as apiObject>
-											<li>
-												<a href="#" data-sidebar="${apiObject.name}" class="sidebar-link">
-													<span title="post" class="pg-type type-${apiObject.method?lower_case}">${apiObject.method}</span>
-													<span>${apiObject.name}</span>
-												</a>
-											</li>
+								
+									<div id="dww-menu" class="mod-tab">
+										<div class="mod-hd">
+											<ul class="tab-nav">
+											<#assign count=1>
+											<#list docsModel?keys as apiModel>
+												<#if count==1>
+												<li class="nav_current" id="nav${count}">${apiModel}</li>
+												<#else>
+												<li class="nav_link" id="nav${count}">${apiModel}</li>
+												</#if>
+											<#assign count=count+1>
 											</#list>
-										</ul>
+											</ul>
+										</div>
+										<div class="mod-bd">
+										<#assign countNum=1>
+										<#list docsModel?keys as apiModel>
+										 	<#if countNum==1>
+											<div class="dis" id="sub${countNum}">
+											<#else>
+											<div class="undis" id="sub${countNum}">
+											</#if>
+											<#assign countNum=countNum+1>
+											<#list docsModel[apiModel]?keys as apiContainer>
+												<#if docsModel[apiModel][apiContainer]?size gt 0>
+														<div class="sidebar-category">
+															<h4>
+																<a href="" data-sidebar="orders-1">
+																	<div class="fa fa-caret-right fa-right"></div>
+																	${apiContainer}
+																</a>
+															</h4>
+															<ul>
+																<#list docsModel[apiModel][apiContainer] as apiObject>
+																<li>
+																	<a href="#" data-sidebar="${apiObject.name}" class="sidebar-link">
+																		<span title="post" class="pg-type type-${apiObject.method?lower_case}">${apiObject.method}</span>
+																		<span>${apiObject.name}</span>
+																	</a>
+																</li>
+																</#list>
+															</ul>
+														</div>
+												</#if>
+											</#list>	
+											<div class="sidebar-category">
+															<h4>
+																<a href="http://twitter.com/orderapi" data-sidebar="twitter-orderapi">
+																	<div class="fa fa-caret-right fa-right"></div>
+																	More
+																</a>
+															</h4>
+															<ul>
+																<li>
+																	<a href="https://gamecloudstudios.com" data-sidebar="twitter-orderapi" target="_self" class="sidebar-link">
+																		<span>GameCloudStudios</span>
+																		<div class="fa fa-external-link-square external"></div>
+																	</a>
+																</li>
+																
+															</ul>
+														</div>
+											</div>
+										<#assign count=count+1>
+										</#list>
+										</div>
 									</div>
-									</#if>
-								</#list>	
-									<div class="sidebar-category">
-										<h4>
-											<a href="http://twitter.com/orderapi" data-sidebar="twitter-orderapi">
-												<div class="fa fa-caret-right fa-right"></div>
-												More
-											</a>
-										</h4>
-										<ul>
-											<li>
-												<a href="http://twitter.com/orderapi" data-sidebar="twitter-orderapi" target="_self" class="sidebar-link">
-													<span>GameCloudStudios</span>
-													<div class="fa fa-external-link-square external"></div>
-												</a>
-											</li>
-											
-										</ul>
-									</div>
+								
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="section-right-parent">
 						<div class="section-right-container">
-						<#list apiObjectGroup?keys as groupName>
-							<#if apiObjectGroup[groupName]?size gt 0>
-								<#list apiObjectGroup[groupName] as apiObject>
+						<#list docsModel?keys as apiModel>
+							<#if docsModel[apiModel]?size gt 0>
+								<#list docsModel[apiModel]?keys as apiContainer>
+									<#if docsModel[apiModel][apiContainer]?size gt 0>
+										<#list docsModel[apiModel][apiContainer] as apiObject>
 							<div data-page="${apiObject.name}" class="docs-page">
 								<div class="docs-content">
 									<div class="docs-header">
@@ -131,7 +164,9 @@
 											</div>
 										</div>
 									</div>
-							</#list>
+										</#list>
+									</#if>
+								</#list>
 							</#if>
 						</#list>
 						</div>
